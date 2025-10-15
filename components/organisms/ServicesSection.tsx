@@ -86,7 +86,7 @@ export const ServicesSection = ({
       id="services"
       ref={sectionRef}
       className={cn(
-        "relative w-full min-h-[600px] sm:min-h-[700px] lg:min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12 bg-gradient-to-br from-blue-50 via-background to-gold-50 overflow-hidden",
+        "relative w-full min-h-[600px] sm:min-h-[700px] lg:min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden",
         className
       )}
       {...props}
