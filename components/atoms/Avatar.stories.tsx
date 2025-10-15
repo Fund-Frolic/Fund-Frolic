@@ -51,6 +51,7 @@ export const Default: Story = {
 
 // Story 2: All Sizes
 export const AllSizes: Story = {
+  args: { alt: "User" },
   render: () => (
     <div className="flex items-end gap-6 p-8">
       <div className="text-center">
@@ -114,6 +115,7 @@ export const AllSizes: Story = {
 
 // Story 3: Shapes
 export const Shapes: Story = {
+  args: { alt: "User" },
   render: () => (
     <div className="flex gap-8 p-8">
       <div className="text-center">
@@ -147,6 +149,7 @@ export const Shapes: Story = {
 
 // Story 4: Fallback Initials
 export const FallbackInitials: Story = {
+  args: { alt: "User", fallback: "LM" },
   render: () => (
     <div className="flex flex-wrap gap-4 p-8">
       <div className="text-center">
@@ -178,6 +181,7 @@ export const FallbackInitials: Story = {
 
 // Story 5: Fallback Icon
 export const FallbackIcon: Story = {
+  args: { alt: "Anonymous user" },
   render: () => (
     <div className="flex gap-4 p-8">
       <Avatar alt="Anonymous user" size="xs" />
@@ -199,6 +203,7 @@ export const FallbackIcon: Story = {
 
 // Story 6: With Ring
 export const WithRing: Story = {
+  args: { alt: "User with ring", ring: true },
   render: () => (
     <div className="flex gap-6 p-8">
       <div className="text-center">
@@ -240,6 +245,7 @@ export const WithRing: Story = {
 
 // Story 7: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { alt: "Team member" },
   render: () => (
     <div className="bg-gray-50 p-12 space-y-8">
       <div>
