@@ -54,6 +54,7 @@ export const Default: Story = {
 
 // Story 2: Orientations
 export const Orientations: Story = {
+  args: {},
   render: () => (
     <div className="p-8 space-y-8">
       <div>
@@ -90,6 +91,7 @@ export const Orientations: Story = {
 
 // Story 3: Variants
 export const Variants: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div>
@@ -119,6 +121,7 @@ export const Variants: Story = {
 
 // Story 4: With Label
 export const WithLabel: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <Divider label="Projects" />
@@ -138,6 +141,7 @@ export const WithLabel: Story = {
 
 // Story 5: In Layout
 export const InLayout: Story = {
+  args: {},
   render: () => (
     <div className="max-w-3xl p-8">
       <h2 className="font-display text-3xl font-semibold text-gray-900 mb-4">
@@ -197,6 +201,7 @@ export const InLayout: Story = {
 
 // Story 6: On Warm Background
 export const OnWarmBackground: Story = {
+  args: {},
   render: () => (
     <div className="bg-gray-50 p-12">
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-md shadow-md">

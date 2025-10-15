@@ -110,6 +110,7 @@ export const WithoutCaption: Story = {
 
 // Story 5: Case Study Demo
 export const CaseStudyDemo: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <div className="max-w-4xl p-8 bg-white">
       <h2 className="font-display text-3xl font-bold text-gray-900 mb-4">
@@ -151,6 +152,7 @@ export const CaseStudyDemo: Story = {
 
 // Story 6: Process Video
 export const ProcessVideo: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <div className="max-w-3xl p-8 bg-white space-y-8">
       <div>
@@ -194,6 +196,7 @@ export const ProcessVideo: Story = {
 
 // Story 7: Blog Post with Video
 export const BlogPostVideo: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <article className="max-w-2xl p-8 bg-white">
       <h1 className="font-display text-4xl font-bold text-gray-900 mb-2">
@@ -233,6 +236,7 @@ export const BlogPostVideo: Story = {
 
 // Story 8: Multiple Videos
 export const MultipleVideos: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <div className="max-w-4xl p-8 bg-white space-y-12">
       <div>
@@ -276,6 +280,7 @@ export const MultipleVideos: Story = {
 
 // Story 9: Grid Layout
 export const GridLayout: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <div className="max-w-6xl p-8">
       <h2 className="font-display text-3xl font-bold text-gray-900 mb-8">
@@ -324,6 +329,7 @@ export const GridLayout: Story = {
 
 // Story 10: Play Button Hover States
 export const PlayButtonHover: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <div className="bg-gray-100 p-8 rounded-md">
       <p className="text-sm text-gray-700 mb-6">
@@ -357,6 +363,7 @@ export const PlayButtonHover: Story = {
 
 // Story 11: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">
@@ -417,6 +424,7 @@ export const AccessibilityDemo: Story = {
 
 // Story 12: Performance Benefits
 export const PerformanceBenefits: Story = {
+  args: { videoId: 'dQw4w9WgXcQ', platform: 'youtube' },
   render: () => (
     <div className="max-w-2xl p-8 bg-white">
       <h2 className="font-display text-3xl font-bold text-gray-900 mb-4">

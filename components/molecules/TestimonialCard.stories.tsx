@@ -147,6 +147,7 @@ export const WithoutCompany: Story = {
 
 // Story 5: Homepage Testimonials Grid
 export const HomepageGrid: Story = {
+  args: { quote: 'Quote', author: 'Author' },
   render: () => (
     <div className="max-w-7xl mx-auto p-8">
       <h2 className="font-display text-3xl font-bold text-gray-900 text-center mb-2">
@@ -224,6 +225,7 @@ export const HomepageGrid: Story = {
 
 // Story 6: Featured Testimonial
 export const FeaturedTestimonial: Story = {
+  args: { quote: 'Quote', author: 'Author' },
   render: () => (
     <div className="max-w-4xl mx-auto p-8">
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-8">
@@ -254,6 +256,7 @@ export const FeaturedTestimonial: Story = {
 
 // Story 7: About Page Social Proof
 export const AboutPageSocialProof: Story = {
+  args: { quote: 'Quote', author: 'Author' },
   render: () => (
     <div className="max-w-4xl mx-auto p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -316,6 +319,7 @@ export const AboutPageSocialProof: Story = {
 
 // Story 8: Case Study Client Feedback
 export const CaseStudyFeedback: Story = {
+  args: { quote: 'Quote', author: 'Author' },
   render: () => (
     <div className="max-w-4xl mx-auto p-8 bg-white">
       <h2 className="font-display text-3xl font-bold text-gray-900 mb-4">
@@ -364,6 +368,7 @@ export const CaseStudyFeedback: Story = {
 
 // Story 9: Single Column Stack
 export const SingleColumnStack: Story = {
+  args: { quote: 'Quote', author: 'Author' },
   render: () => (
     <div className="max-w-2xl mx-auto p-8">
       <h2 className="font-display text-2xl font-bold text-gray-900 mb-8 text-center">
@@ -411,6 +416,7 @@ export const SingleColumnStack: Story = {
 
 // Story 10: Different Quote Lengths
 export const DifferentQuoteLengths: Story = {
+  args: { quote: 'Quote', author: 'Author' },
   render: () => (
     <div className="max-w-6xl mx-auto p-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -453,6 +459,7 @@ export const DifferentQuoteLengths: Story = {
 
 // Story 11: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { quote: 'Quote', author: 'Author' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

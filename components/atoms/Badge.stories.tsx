@@ -57,6 +57,7 @@ export const Default: Story = {
 
 // Story 2: All Variants
 export const AllVariants: Story = {
+  args: { children: 'Badge' },
   render: () => (
     <div className="flex flex-wrap gap-3 p-8">
       <Badge variant="default">Default</Badge>
@@ -78,6 +79,7 @@ export const AllVariants: Story = {
 
 // Story 3: All Sizes
 export const AllSizes: Story = {
+  args: { children: 'Badge' },
   render: () => (
     <div className="flex items-center gap-4 p-8">
       <div className="text-center">
@@ -105,6 +107,7 @@ export const AllSizes: Story = {
 
 // Story 4: All Shapes
 export const AllShapes: Story = {
+  args: { children: 'Badge' },
   render: () => (
     <div className="flex flex-col gap-4 p-8">
       <div>
@@ -132,6 +135,7 @@ export const AllShapes: Story = {
 
 // Story 5: With Dot
 export const WithDot: Story = {
+  args: { children: 'Badge' },
   render: () => (
     <div className="flex flex-wrap gap-3 p-8">
       <Badge variant="default" dot>Neutral</Badge>
@@ -152,6 +156,7 @@ export const WithDot: Story = {
 
 // Story 6: Semantic Use Cases
 export const SemanticUseCases: Story = {
+  args: { children: 'Badge' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div>
@@ -216,6 +221,7 @@ export const SemanticUseCases: Story = {
 
 // Story 7: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { children: 'Badge' },
   render: () => (
     <div className="bg-gray-50 p-12 space-y-8">
       <div>

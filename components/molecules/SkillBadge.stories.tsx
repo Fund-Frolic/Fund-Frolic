@@ -154,6 +154,7 @@ export const NoProficiency: Story = {
 
 // Story 5: About Page Skills
 export const AboutPageSkills: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="max-w-3xl p-8 bg-white">
       <h2 className="font-display text-3xl font-bold text-gray-900 mb-2">
@@ -205,6 +206,7 @@ export const AboutPageSkills: Story = {
 
 // Story 6: Case Study Tech Stack
 export const CaseStudyTechStack: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="max-w-4xl p-8 bg-white">
       <h2 className="font-display text-3xl font-bold text-gray-900 mb-4">
@@ -251,6 +253,7 @@ export const CaseStudyTechStack: Story = {
 
 // Story 7: Grid Layout
 export const GridLayout: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="max-w-2xl p-8">
       <h2 className="font-display text-2xl font-bold text-gray-900 mb-6">
@@ -284,6 +287,7 @@ export const GridLayout: Story = {
 
 // Story 8: Compact List
 export const CompactList: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="w-64 bg-white border border-gray-200 rounded-lg p-6">
       <h3 className="font-display text-lg font-semibold text-gray-900 mb-4">
@@ -308,6 +312,7 @@ export const CompactList: Story = {
 
 // Story 9: Resume Section
 export const ResumeSection: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="max-w-3xl p-8 bg-white">
       <div className="mb-8">
@@ -367,6 +372,7 @@ export const ResumeSection: Story = {
 
 // Story 10: Hover States Demo
 export const HoverStates: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="bg-gray-100 p-8 rounded-md">
       <p className="text-sm text-gray-700 mb-6">
@@ -400,6 +406,7 @@ export const HoverStates: Story = {
 
 // Story 11: Different Proficiency Levels
 export const ProficiencyLevels: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="p-8 space-y-6">
       <div>
@@ -458,6 +465,7 @@ export const ProficiencyLevels: Story = {
 
 // Story 12: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { skill: 'Skill' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

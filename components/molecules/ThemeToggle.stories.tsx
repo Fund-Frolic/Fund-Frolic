@@ -66,6 +66,7 @@ export const DarkMode: Story = {
 
 // Story 3: Interactive Toggle
 export const InteractiveToggle: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -97,6 +98,7 @@ export const InteractiveToggle: Story = {
 
 // Story 4: In Header
 export const InHeader: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -143,6 +145,7 @@ export const InHeader: Story = {
 
 // Story 5: Dark Header
 export const DarkHeader: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
@@ -189,6 +192,7 @@ export const DarkHeader: Story = {
 
 // Story 6: Settings Panel
 export const SettingsPanel: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -246,6 +250,7 @@ export const SettingsPanel: Story = {
 
 // Story 7: Mobile Menu
 export const MobileMenu: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -302,6 +307,7 @@ export const MobileMenu: Story = {
 
 // Story 8: Animation Demo
 export const AnimationDemo: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -339,6 +345,7 @@ export const AnimationDemo: Story = {
 
 // Story 9: Multiple Instances
 export const MultipleInstances: Story = {
+  args: {},
   render: () => {
     const [theme1, setTheme1] = useState<'light' | 'dark'>('light');
     const [theme2, setTheme2] = useState<'light' | 'dark'>('dark');
@@ -383,6 +390,7 @@ export const MultipleInstances: Story = {
 
 // Story 10: Keyboard Navigation Demo
 export const KeyboardNavigation: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -419,6 +427,7 @@ export const KeyboardNavigation: Story = {
 
 // Story 11: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: {},
   render: () => {
     const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -486,6 +495,7 @@ export const AccessibilityDemo: Story = {
 
 // Story 12: Interactive (Playground)
 export const Interactive: Story = {
+  args: {},
   render: (args) => {
     const [theme, setTheme] = useState<'light' | 'dark'>(args.theme);
 

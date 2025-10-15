@@ -80,6 +80,7 @@ export const Default: Story = {
 
 // Story 2: All Variants
 export const AllVariants: Story = {
+  args: { children: 'Button' },
   render: () => (
     <div className="flex flex-col gap-4 p-8">
       <Button variant="primary">Primary - Craftsmanship</Button>
@@ -100,6 +101,7 @@ export const AllVariants: Story = {
 
 // Story 3: All Sizes
 export const AllSizes: Story = {
+  args: { children: 'Button' },
   render: () => (
     <div className="flex items-end gap-4 p-8">
       <Button size="sm">Small (32px)</Button>
@@ -118,6 +120,7 @@ export const AllSizes: Story = {
 
 // Story 4: With Icons
 export const WithIcons: Story = {
+  args: { children: 'Button' },
   render: () => (
     <div className="flex flex-col gap-4 p-8">
       <Button leftIcon={<CheckIcon />}>Completed Projects</Button>
@@ -144,6 +147,7 @@ export const WithIcons: Story = {
 
 // Story 5: States
 export const States: Story = {
+  args: { children: 'Button' },
   render: () => (
     <div className="flex flex-col gap-4 p-8">
       <div>
@@ -179,6 +183,7 @@ export const States: Story = {
 
 // Story 6: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { children: 'Button' },
   render: () => (
     <div className="bg-gray-50 p-12 space-y-6">
       <div>
@@ -211,6 +216,7 @@ export const OnWarmBackground: Story = {
 
 // Story 7: Accessibility
 export const Accessibility: Story = {
+  args: { children: 'Button' },
   render: () => (
     <div className="p-8 space-y-6">
       <div>
@@ -292,6 +298,7 @@ export const Interactive: Story = {
 
 // Story 9: Full Width
 export const FullWidth: Story = {
+  args: { children: 'Button' },
   render: () => (
     <div className="w-full max-w-md p-8 space-y-3">
       <Button fullWidth rightIcon={<ArrowRightIcon />}>

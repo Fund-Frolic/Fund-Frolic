@@ -53,6 +53,7 @@ const UserIcon = () => (
 
 // Story 1: Basic (No Error)
 export const Basic: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-80">
       <FormField>
@@ -74,6 +75,7 @@ export const Basic: Story = {
 
 // Story 2: With Error
 export const WithError: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-80">
       <FormField error="Please enter a valid email address">
@@ -95,6 +97,7 @@ export const WithError: Story = {
 
 // Story 3: Required Field
 export const RequiredField: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-80">
       <FormField>
@@ -116,6 +119,7 @@ export const RequiredField: Story = {
 
 // Story 4: With Left Icon
 export const WithLeftIcon: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-80">
       <FormField>
@@ -141,6 +145,7 @@ export const WithLeftIcon: Story = {
 
 // Story 5: Password Field
 export const PasswordField: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-80">
       <FormField>
@@ -166,6 +171,7 @@ export const PasswordField: Story = {
 
 // Story 6: Contact Form
 export const ContactForm: Story = {
+  args: { label: 'Label', children: null },
   render: () => {
     const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -259,6 +265,7 @@ export const ContactForm: Story = {
 
 // Story 7: Newsletter Signup
 export const NewsletterSignup: Story = {
+  args: { label: 'Label', children: null },
   render: () => {
     const [error, setError] = useState<string | undefined>();
     const [success, setSuccess] = useState(false);
@@ -330,6 +337,7 @@ export const NewsletterSignup: Story = {
 
 // Story 8: Multiple Fields
 export const MultipleFields: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-full max-w-md p-8 bg-white space-y-6">
       <FormField>
@@ -388,6 +396,7 @@ export const MultipleFields: Story = {
 
 // Story 9: Validation States
 export const ValidationStates: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-full max-w-md p-8 bg-white space-y-6">
       <div>
@@ -440,6 +449,7 @@ export const ValidationStates: Story = {
 
 // Story 10: Different Sizes
 export const DifferentSizes: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="w-full max-w-md p-8 bg-white space-y-6">
       <div>
@@ -484,6 +494,7 @@ export const DifferentSizes: Story = {
 
 // Story 11: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { label: 'Label', children: null },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">
@@ -550,6 +561,7 @@ export const AccessibilityDemo: Story = {
 
 // Story 12: Interactive (Playground)
 export const Interactive: Story = {
+  args: { label: 'Label', children: null },
   render: (args) => {
     const [value, setValue] = useState('');
     const [error, setError] = useState<string | undefined>(args.error);

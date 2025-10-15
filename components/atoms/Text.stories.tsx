@@ -52,6 +52,7 @@ export const Default: Story = {
 
 // Story 2: All Variants
 export const AllVariants: Story = {
+  args: { children: 'Text' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div>
@@ -110,6 +111,7 @@ export const AllVariants: Story = {
 
 // Story 3: In Paragraphs
 export const InParagraphs: Story = {
+  args: { children: 'Text' },
   render: () => (
     <div className="max-w-3xl p-8 space-y-4">
       <Text variant="lead">
@@ -154,6 +156,7 @@ export const InParagraphs: Story = {
 
 // Story 4: With Links
 export const WithLinks: Story = {
+  args: { children: 'Text' },
   render: () => (
     <div className="max-w-3xl p-8 space-y-4">
       <Text variant="lead">
@@ -196,6 +199,7 @@ export const WithLinks: Story = {
 
 // Story 5: Weights
 export const Weights: Story = {
+  args: { children: 'Text' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div>
@@ -243,6 +247,7 @@ export const Weights: Story = {
 
 // Story 6: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { children: 'Text' },
   render: () => (
     <div className="bg-gray-50 p-12 max-w-4xl space-y-6">
       <Text variant="lead">
@@ -279,6 +284,7 @@ export const OnWarmBackground: Story = {
 
 // Story 7: As Different Elements
 export const AsDifferentElements: Story = {
+  args: { children: 'Text' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div>

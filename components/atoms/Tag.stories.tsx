@@ -52,6 +52,7 @@ export const Default: Story = {
 
 // Story 2: All Variants
 export const AllVariants: Story = {
+  args: { children: 'Tag' },
   render: () => (
     <div className="flex flex-wrap gap-3 p-8">
       <Tag variant="default">Default</Tag>
@@ -70,6 +71,7 @@ export const AllVariants: Story = {
 
 // Story 3: All Sizes
 export const AllSizes: Story = {
+  args: { children: 'Tag' },
   render: () => (
     <div className="flex items-center gap-4 p-8">
       <div className="text-center">
@@ -93,6 +95,7 @@ export const AllSizes: Story = {
 
 // Story 4: Removable
 export const Removable: Story = {
+  args: { children: 'Tag' },
   render: () => {
     const RemovableExample = () => {
       const [tags, setTags] = useState([
@@ -145,6 +148,7 @@ export const Removable: Story = {
 
 // Story 5: Technology Stack
 export const TechnologyStack: Story = {
+  args: { children: 'Tag' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div>
@@ -198,6 +202,7 @@ export const TechnologyStack: Story = {
 
 // Story 6: Removable with Variants
 export const RemovableWithVariants: Story = {
+  args: { children: 'Tag' },
   render: () => {
     const RemovableVariantsExample = () => {
       const [featured, setFeatured] = useState(['React', 'TypeScript']);
@@ -270,6 +275,7 @@ export const RemovableWithVariants: Story = {
 
 // Story 7: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { children: 'Tag' },
   render: () => (
     <div className="bg-gray-50 p-12 space-y-8">
       <div>

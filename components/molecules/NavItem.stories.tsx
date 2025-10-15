@@ -87,6 +87,7 @@ export const Active: Story = {
 
 // Story 3: With Icon
 export const WithIcon: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="flex gap-6">
       <NavItem href="/" icon={<HomeIcon />}>
@@ -114,6 +115,7 @@ export const WithIcon: Story = {
 
 // Story 4: Navigation Bar
 export const NavigationBar: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <nav className="bg-white border-b border-gray-200 px-6">
       <div className="flex items-center gap-1">
@@ -146,6 +148,7 @@ export const NavigationBar: Story = {
 
 // Story 5: With Icons Navigation
 export const WithIconsNavigation: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <nav className="bg-white border-b border-gray-200 px-6">
       <div className="flex items-center gap-1">
@@ -175,6 +178,7 @@ export const WithIconsNavigation: Story = {
 
 // Story 6: Vertical Navigation
 export const VerticalNavigation: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <aside className="w-64 bg-white border-r border-gray-200 p-4">
       <nav className="flex flex-col gap-1">
@@ -204,6 +208,7 @@ export const VerticalNavigation: Story = {
 
 // Story 7: Mobile Navigation
 export const MobileNavigation: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <nav className="bg-white border-t border-gray-200">
       <div className="flex flex-col">
@@ -233,6 +238,7 @@ export const MobileNavigation: Story = {
 
 // Story 8: Footer Navigation
 export const FooterNavigation: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -311,6 +317,7 @@ export const FooterNavigation: Story = {
 
 // Story 9: Hover States
 export const HoverStates: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="bg-gray-100 p-8 rounded-md">
       <p className="text-sm text-gray-700 mb-4">Hover over items to see color transitions</p>
@@ -341,6 +348,7 @@ export const HoverStates: Story = {
 
 // Story 10: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

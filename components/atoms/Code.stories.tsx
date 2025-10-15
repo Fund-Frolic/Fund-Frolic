@@ -46,6 +46,7 @@ export const Default: Story = {
 
 // Story 2: Block
 export const Block: Story = {
+  args: { children: 'code' },
   render: () => (
     <div className="w-full max-w-2xl p-8">
       <Code inline={false}>{`function hello() {
@@ -64,6 +65,7 @@ export const Block: Story = {
 
 // Story 3: In Text
 export const InText: Story = {
+  args: { children: 'code' },
   render: () => (
     <div className="max-w-2xl p-8">
       <Text variant="body">
@@ -91,6 +93,7 @@ export const InText: Story = {
 
 // Story 4: Long Block
 export const LongBlock: Story = {
+  args: { children: 'code' },
   render: () => (
     <div className="w-full max-w-2xl p-8">
       <Code inline={false}>{`// This is a longer code block that demonstrates horizontal scrolling
@@ -123,6 +126,7 @@ export const buttonVariants = cva(
 
 // Story 5: Multiple Languages
 export const MultipleLanguages: Story = {
+  args: { children: 'code' },
   render: () => (
     <div className="max-w-3xl p-8 space-y-6">
       <div>
@@ -177,6 +181,7 @@ pnpm run storybook`}</Code>
 
 // Story 6: Inline Variants
 export const InlineVariants: Story = {
+  args: { children: 'code' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-4">
       <Text variant="body">
@@ -215,6 +220,7 @@ export const InlineVariants: Story = {
 
 // Story 7: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { children: 'code' },
   render: () => (
     <div className="bg-gray-50 p-12">
       <div className="max-w-3xl mx-auto">

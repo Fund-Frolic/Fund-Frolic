@@ -44,6 +44,7 @@ export const Default: Story = {
 
 // Story 2: All Sizes
 export const AllSizes: Story = {
+  args: {},
   render: () => (
     <div className="flex items-end gap-8 p-8">
       <div className="text-center">
@@ -79,6 +80,7 @@ export const AllSizes: Story = {
 
 // Story 3: Color Inheritance
 export const ColorInheritance: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-8">
       <div className="flex items-center gap-3">
@@ -128,6 +130,7 @@ export const ColorInheritance: Story = {
 
 // Story 4: In Button Loading States
 export const InButtons: Story = {
+  args: {},
   render: () => (
     <div className="flex flex-wrap gap-4 p-8">
       {/* Primary button loading */}
@@ -177,6 +180,7 @@ export const InButtons: Story = {
 
 // Story 5: Page Loading
 export const PageLoading: Story = {
+  args: {},
   render: () => (
     <div className="min-h-[400px] flex flex-col items-center justify-center bg-gray-50 p-8">
       <Spinner size="xl" className="text-blue-600" />
@@ -195,6 +199,7 @@ export const PageLoading: Story = {
 
 // Story 6: Inline with Text
 export const InlineWithText: Story = {
+  args: {},
   render: () => (
     <div className="max-w-md p-8 space-y-6">
       <p className="text-base text-gray-900 flex items-center gap-2">
@@ -231,6 +236,7 @@ export const InlineWithText: Story = {
 
 // Story 7: Card Loading States
 export const CardLoadingStates: Story = {
+  args: {},
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 max-w-4xl">
       {/* Loading card 1 */}
@@ -273,6 +279,7 @@ export const CardLoadingStates: Story = {
 
 // Story 8: Form Submission
 export const FormSubmission: Story = {
+  args: {},
   render: () => (
     <div className="max-w-md p-8">
       <div className="bg-white border border-gray-200 rounded-md p-6">
@@ -346,6 +353,7 @@ export const FormSubmission: Story = {
 
 // Story 9: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

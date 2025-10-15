@@ -101,6 +101,7 @@ export const Email: Story = {
 
 // Story 5: All Platforms
 export const AllPlatforms: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <div className="flex gap-4 p-8">
       <SocialLink platform="github" href="https://github.com" />
@@ -120,6 +121,7 @@ export const AllPlatforms: Story = {
 
 // Story 6: Custom Labels
 export const CustomLabels: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <div className="flex gap-4 p-8">
       <SocialLink
@@ -155,6 +157,7 @@ export const CustomLabels: Story = {
 
 // Story 7: Footer Example
 export const FooterExample: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -199,6 +202,7 @@ export const FooterExample: Story = {
 
 // Story 8: Contact Page
 export const ContactPage: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <div className="max-w-md p-8 bg-white border border-gray-200 rounded-md">
       <h2 className="font-display text-2xl font-semibold text-gray-900 mb-2">
@@ -254,6 +258,7 @@ export const ContactPage: Story = {
 
 // Story 9: Sidebar
 export const Sidebar: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <aside className="w-64 bg-white border-r border-gray-200 p-6">
       <div className="mb-6">
@@ -293,6 +298,7 @@ export const Sidebar: Story = {
 
 // Story 10: Hero Section
 export const HeroSection: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <div className="bg-gray-50 p-12">
       <div className="max-w-4xl mx-auto text-center">
@@ -343,6 +349,7 @@ export const HeroSection: Story = {
 
 // Story 11: Hover States Demo
 export const HoverStates: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <div className="bg-gray-100 p-8 rounded-md">
       <p className="text-sm text-gray-700 mb-6">
@@ -374,6 +381,7 @@ export const HoverStates: Story = {
 
 // Story 12: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { platform: 'github', url: '#' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

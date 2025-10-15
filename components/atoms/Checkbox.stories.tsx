@@ -62,6 +62,7 @@ export const Default: Story = {
 
 // Story 2: All Sizes
 export const AllSizes: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => (
     <div className="flex flex-col gap-6 p-8">
       <div className="flex items-center gap-3">
@@ -97,6 +98,7 @@ export const AllSizes: Story = {
 
 // Story 3: All States
 export const AllStates: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => (
     <div className="flex flex-col gap-6 p-8">
       <div>
@@ -162,6 +164,7 @@ export const AllStates: Story = {
 
 // Story 4: Interactive States
 export const InteractiveStates: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => {
     const InteractiveExample = () => {
       const [checked, setChecked] = useState(false);
@@ -201,6 +204,7 @@ export const InteractiveStates: Story = {
 
 // Story 5: Indeterminate Example (Select All)
 export const IndeterminateExample: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => {
     const SelectAllExample = () => {
       const [items, setItems] = useState({
@@ -280,6 +284,7 @@ export const IndeterminateExample: Story = {
 
 // Story 6: Form Example
 export const FormExample: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => {
     const FormExampleComponent = () => {
       const [formData, setFormData] = useState({
@@ -373,6 +378,7 @@ export const FormExample: Story = {
 
 // Story 7: Filter Controls
 export const FilterControls: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => {
     const FilterExample = () => {
       const [filters, setFilters] = useState({
@@ -445,6 +451,7 @@ export const FilterControls: Story = {
 
 // Story 8: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => (
     <div className="bg-gray-50 p-12">
       <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
@@ -483,6 +490,7 @@ export const OnWarmBackground: Story = {
 
 // Story 9: Accessibility Pattern
 export const AccessibilityPattern: Story = {
+  args: { 'aria-label': 'Checkbox' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div className="bg-gray-100 p-4 rounded-md">

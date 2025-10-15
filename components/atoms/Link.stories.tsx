@@ -51,6 +51,7 @@ export const Default: Story = {
 
 // Story 2: All Variants
 export const AllVariants: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="flex flex-col gap-6 p-8">
       <div>
@@ -97,6 +98,7 @@ export const AllVariants: Story = {
 
 // Story 3: Nav States
 export const NavStates: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="p-8 space-y-6">
       <div>
@@ -162,6 +164,7 @@ export const NavStates: Story = {
 
 // Story 4: In Body Copy
 export const InBodyCopy: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="max-w-2xl p-8">
       <h2 className="font-display text-3xl font-semibold text-gray-900 mb-4">
@@ -200,6 +203,7 @@ export const InBodyCopy: Story = {
 
 // Story 5: Accessibility
 export const Accessibility: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="p-8 space-y-6">
       <div>
@@ -273,6 +277,7 @@ export const Accessibility: Story = {
 
 // Story 6: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { href: '#', children: 'Link' },
   render: () => (
     <div className="bg-gray-50 p-12 space-y-6">
       <div>

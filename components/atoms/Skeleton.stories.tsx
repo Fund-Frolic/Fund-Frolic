@@ -59,6 +59,7 @@ export const Default: Story = {
 
 // Story 2: All Variants
 export const AllVariants: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-8">
       <div>
@@ -88,6 +89,7 @@ export const AllVariants: Story = {
 
 // Story 3: All Animations
 export const AllAnimations: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-8">
       <div>
@@ -120,6 +122,7 @@ export const AllAnimations: Story = {
 
 // Story 4: Text Loading Variants
 export const TextLoadingVariants: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div>
@@ -154,6 +157,7 @@ export const TextLoadingVariants: Story = {
 
 // Story 5: Avatar Sizes
 export const AvatarSizes: Story = {
+  args: {},
   render: () => (
     <div className="flex items-end gap-6 p-8">
       <div className="text-center">
@@ -189,6 +193,7 @@ export const AvatarSizes: Story = {
 
 // Story 6: Card Loading State
 export const CardLoadingState: Story = {
+  args: {},
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 max-w-4xl">
       {/* Card 1 */}
@@ -217,6 +222,7 @@ export const CardLoadingState: Story = {
 
 // Story 7: Profile Loading
 export const ProfileLoading: Story = {
+  args: {},
   render: () => (
     <div className="max-w-md p-8">
       <div className="bg-white border border-gray-200 rounded-md p-6">
@@ -258,6 +264,7 @@ export const ProfileLoading: Story = {
 
 // Story 8: Testimonial Loading
 export const TestimonialLoading: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8">
       <div className="bg-white border border-gray-200 rounded-md p-6">
@@ -286,6 +293,7 @@ export const TestimonialLoading: Story = {
 
 // Story 9: List Loading
 export const ListLoading: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8 space-y-4">
       {Array.from({ length: 5 }).map((_, index) => (
@@ -314,6 +322,7 @@ export const ListLoading: Story = {
 
 // Story 10: Page Skeleton
 export const PageSkeleton: Story = {
+  args: {},
   render: () => (
     <div className="max-w-4xl p-8">
       {/* Header */}
@@ -359,6 +368,7 @@ export const PageSkeleton: Story = {
 
 // Story 11: With Wave Animation
 export const WithWaveAnimation: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8">
       <div className="bg-white border border-gray-200 rounded-md p-6">
@@ -392,6 +402,7 @@ export const WithWaveAnimation: Story = {
 
 // Story 12: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: {},
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

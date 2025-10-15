@@ -179,6 +179,7 @@ export const AutoResize: Story = {
 
 // Story 7: Contact Form
 export const ContactForm: Story = {
+  args: { label: 'Label' },
   render: () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState<string | undefined>();
@@ -240,6 +241,7 @@ export const ContactForm: Story = {
 
 // Story 8: Comment Form
 export const CommentForm: Story = {
+  args: { label: 'Label' },
   render: () => {
     const [comment, setComment] = useState('');
 
@@ -292,6 +294,7 @@ export const CommentForm: Story = {
 
 // Story 9: Different Heights
 export const DifferentHeights: Story = {
+  args: { label: 'Label' },
   render: () => (
     <div className="w-full max-w-2xl p-8 space-y-6">
       <div>
@@ -338,6 +341,7 @@ export const DifferentHeights: Story = {
 
 // Story 10: With FormField
 export const WithFormField: Story = {
+  args: { label: 'Label' },
   render: () => (
     <div className="w-full max-w-md p-8 bg-white">
       <FormField>
@@ -384,6 +388,7 @@ export const DisabledState: Story = {
 
 // Story 12: Case Study Description
 export const CaseStudyDescription: Story = {
+  args: { label: 'Label' },
   render: () => {
     const [description, setDescription] = useState('');
 
@@ -444,6 +449,7 @@ export const CaseStudyDescription: Story = {
 
 // Story 13: Character Counter States
 export const CharacterCounterStates: Story = {
+  args: { label: 'Label' },
   render: () => (
     <div className="w-full max-w-2xl p-8 space-y-6">
       <div>
@@ -503,6 +509,7 @@ export const CharacterCounterStates: Story = {
 
 // Story 14: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { label: 'Label' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

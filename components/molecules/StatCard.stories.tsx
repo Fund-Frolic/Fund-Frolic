@@ -126,6 +126,7 @@ export const PercentageImprovement: Story = {
 
 // Story 5: About Page Stats
 export const AboutPageStats: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-5xl mx-auto p-8">
       <div className="text-center mb-12">
@@ -172,6 +173,7 @@ export const AboutPageStats: Story = {
 
 // Story 6: Homepage Metrics
 export const HomepageMetrics: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-6xl mx-auto p-8 bg-gray-50">
       <div className="bg-white rounded-xl p-12">
@@ -215,6 +217,7 @@ export const HomepageMetrics: Story = {
 
 // Story 7: Case Study Results
 export const CaseStudyResults: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-4xl mx-auto p-8">
       <h2 className="font-display text-3xl font-bold text-gray-900 mb-4">
@@ -260,6 +263,7 @@ export const CaseStudyResults: Story = {
 
 // Story 8: Different Value Formats
 export const DifferentValueFormats: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-6xl mx-auto p-8">
       <h2 className="font-display text-2xl font-bold text-gray-900 mb-8 text-center">
@@ -301,6 +305,7 @@ export const DifferentValueFormats: Story = {
 
 // Story 9: Two Column Grid
 export const TwoColumnGrid: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-2xl mx-auto p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -328,6 +333,7 @@ export const TwoColumnGrid: Story = {
 
 // Story 10: Single Stat Feature
 export const SingleStatFeature: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-md mx-auto p-8">
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-8">
@@ -354,6 +360,7 @@ export const SingleStatFeature: Story = {
 
 // Story 11: Performance Metrics
 export const PerformanceMetrics: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-4xl mx-auto p-8">
       <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6 text-center">
@@ -390,6 +397,7 @@ export const PerformanceMetrics: Story = {
 
 // Story 12: Tech Stack Stats
 export const TechStackStats: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-5xl mx-auto p-8">
       <h3 className="font-display text-2xl font-semibold text-gray-900 mb-8 text-center">
@@ -431,6 +439,7 @@ export const TechStackStats: Story = {
 
 // Story 13: Large Numbers
 export const LargeNumbers: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-4xl mx-auto p-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -463,6 +472,7 @@ export const LargeNumbers: Story = {
 
 // Story 14: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { value: '0', label: 'Label' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

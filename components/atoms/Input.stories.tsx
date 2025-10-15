@@ -98,6 +98,7 @@ export const Default: Story = {
 
 // Story 2: All Sizes
 export const AllSizes: Story = {
+  args: { 'aria-label': 'Input' },
   render: () => (
     <div className="w-96 p-8 space-y-6">
       <div>
@@ -136,6 +137,7 @@ export const AllSizes: Story = {
 
 // Story 3: States
 export const States: Story = {
+  args: { 'aria-label': 'Input' },
   render: () => (
     <div className="w-96 p-8 space-y-6">
       <div>
@@ -198,6 +200,7 @@ export const States: Story = {
 
 // Story 4: With Icons
 export const WithIcons: Story = {
+  args: { 'aria-label': 'Input' },
   render: () => (
     <div className="w-96 p-8 space-y-6">
       <div>
@@ -254,6 +257,7 @@ export const WithIcons: Story = {
 
 // Story 5: Input Types
 export const InputTypes: Story = {
+  args: { 'aria-label': 'Input' },
   render: () => (
     <div className="w-96 p-8 space-y-6">
       <div>
@@ -317,6 +321,7 @@ export const InputTypes: Story = {
 
 // Story 6: Form Example
 export const FormExample: Story = {
+  args: { 'aria-label': 'Input' },
   render: () => (
     <div className="w-full max-w-md p-8">
       <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6">
@@ -389,6 +394,7 @@ export const FormExample: Story = {
 
 // Story 7: Validation States
 export const ValidationStates: Story = {
+  args: { 'aria-label': 'Input' },
   render: () => (
     <div className="w-96 p-8 space-y-6">
       <div>
@@ -443,6 +449,7 @@ export const ValidationStates: Story = {
 
 // Story 8: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { 'aria-label': 'Input' },
   render: () => (
     <div className="bg-gray-50 p-12">
       <div className="max-w-md mx-auto">

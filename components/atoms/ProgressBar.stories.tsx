@@ -68,6 +68,7 @@ export const Default: Story = {
 
 // Story 2: All Sizes
 export const AllSizes: Story = {
+  args: { value: 50 },
   render: () => (
     <div className="w-96 p-8 space-y-8">
       <div>
@@ -97,6 +98,7 @@ export const AllSizes: Story = {
 
 // Story 3: Progress States
 export const ProgressStates: Story = {
+  args: { value: 50 },
   render: () => (
     <div className="w-96 p-8 space-y-8">
       <div>
@@ -136,6 +138,7 @@ export const ProgressStates: Story = {
 
 // Story 4: Indeterminate
 export const Indeterminate: Story = {
+  args: { value: 50 },
   render: () => (
     <div className="w-96 p-8 space-y-8">
       <div>
@@ -166,6 +169,7 @@ export const Indeterminate: Story = {
 
 // Story 5: With Labels
 export const WithLabels: Story = {
+  args: { value: 50 },
   render: () => (
     <div className="w-96 p-8 space-y-8">
       <div>
@@ -212,6 +216,7 @@ export const WithLabels: Story = {
 
 // Story 6: Animated Progress
 export const AnimatedProgress: Story = {
+  args: { value: 50 },
   render: () => {
     const [progress, setProgress] = useState(0);
 
@@ -250,6 +255,7 @@ export const AnimatedProgress: Story = {
 
 // Story 7: Upload Progress
 export const UploadProgress: Story = {
+  args: { value: 50 },
   render: () => {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
@@ -311,6 +317,7 @@ export const UploadProgress: Story = {
 
 // Story 8: Multi-step Process
 export const MultiStepProcess: Story = {
+  args: { value: 50 },
   render: () => {
     const [step, setStep] = useState(1);
     const totalSteps = 4;
@@ -384,6 +391,7 @@ export const MultiStepProcess: Story = {
 
 // Story 9: Download Progress
 export const DownloadProgress: Story = {
+  args: { value: 50 },
   render: () => (
     <div className="w-96 p-8 space-y-6">
       <div className="bg-white border border-gray-200 rounded-md p-4">
@@ -430,6 +438,7 @@ export const DownloadProgress: Story = {
 
 // Story 10: Page Loading
 export const PageLoading: Story = {
+  args: { value: 50 },
   render: () => {
     const [progress, setProgress] = useState(0);
 
@@ -478,6 +487,7 @@ export const PageLoading: Story = {
 
 // Story 11: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { value: 50 },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">

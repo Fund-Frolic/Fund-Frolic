@@ -48,6 +48,7 @@ export const Default: Story = {
 
 // Story 2: Font Switching Demonstration
 export const FontSwitching: Story = {
+  args: { children: 'Heading' },
   render: () => (
     <div className="space-y-8 max-w-4xl p-8">
       <div className="mb-6 p-4 bg-blue-50 rounded-md border border-blue-200">
@@ -144,6 +145,7 @@ export const FontSwitching: Story = {
 
 // Story 3: Semantic Hierarchy
 export const SemanticHierarchy: Story = {
+  args: { children: 'Heading' },
   render: () => (
     <div className="max-w-4xl p-8 space-y-6">
       <Heading as="h1" variant="h1">
@@ -199,6 +201,7 @@ export const SemanticHierarchy: Story = {
 
 // Story 4: Responsive
 export const Responsive: Story = {
+  args: { children: 'Heading' },
   render: () => (
     <div className="w-full p-8 space-y-8">
       <div>
@@ -249,6 +252,7 @@ export const Responsive: Story = {
 
 // Story 5: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { children: 'Heading' },
   render: () => (
     <div className="bg-gray-50 p-12 space-y-8">
       <div>
@@ -295,6 +299,7 @@ export const OnWarmBackground: Story = {
 
 // Story 6: Visual vs. Semantic Independence
 export const VisualVsSemanticIndependence: Story = {
+  args: { children: 'Heading' },
   render: () => (
     <div className="max-w-4xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">
