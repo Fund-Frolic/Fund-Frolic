@@ -21,7 +21,7 @@ export const StorySection = ({
 }: StorySectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const sunRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     let ticking = false;

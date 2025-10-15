@@ -27,7 +27,7 @@ export const HeroSection = ({
   const sectionRef = useRef<HTMLElement>(null);
   const hill1Ref = useRef<SVGSVGElement>(null);
   const hill2Ref = useRef<SVGSVGElement>(null);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     let ticking = false;

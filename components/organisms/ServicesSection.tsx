@@ -24,7 +24,7 @@ export const ServicesSection = ({
   const cloud1Ref = useRef<SVGSVGElement>(null);
   const cloud2Ref = useRef<SVGSVGElement>(null);
   const cloud3Ref = useRef<SVGSVGElement>(null);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     let ticking = false;
