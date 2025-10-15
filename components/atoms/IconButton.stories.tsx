@@ -95,6 +95,7 @@ export const Default: Story = {
 
 // Story 2: All Variants
 export const AllVariants: Story = {
+  args: { icon: <XMarkIcon />, 'aria-label': 'Close' },
   render: () => (
     <div className="flex items-center gap-4 p-8">
       <div className="text-center">
@@ -136,6 +137,7 @@ export const AllVariants: Story = {
 
 // Story 3: All Sizes
 export const AllSizes: Story = {
+  args: { icon: <XMarkIcon />, 'aria-label': 'Close' },
   render: () => (
     <div className="flex items-end gap-6 p-8">
       <div className="text-center">
@@ -177,6 +179,7 @@ export const AllSizes: Story = {
 
 // Story 4: Common Icons
 export const CommonIcons: Story = {
+  args: { icon: <XMarkIcon />, 'aria-label': 'Action' },
   render: () => (
     <div className="flex flex-wrap gap-4 p-8">
       <div className="text-center">
@@ -239,6 +242,7 @@ export const CommonIcons: Story = {
 
 // Story 5: States
 export const States: Story = {
+  args: { icon: <XMarkIcon />, 'aria-label': 'Action' },
   render: () => (
     <div className="flex flex-col gap-6 p-8">
       <div>
@@ -307,6 +311,7 @@ export const States: Story = {
 
 // Story 6: Accessibility
 export const Accessibility: Story = {
+  args: { icon: <XMarkIcon />, 'aria-label': 'Close' },
   render: () => (
     <div className="p-8 space-y-6 max-w-2xl">
       <div>
@@ -411,6 +416,7 @@ export const Accessibility: Story = {
 
 // Story 7: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { icon: <XMarkIcon />, 'aria-label': 'Action' },
   render: () => (
     <div className="bg-gray-50 p-12 space-y-6">
       <div>
