@@ -59,6 +59,7 @@ export const Default: Story = {
 
 // Story 2: All Aspect Ratios
 export const AllAspectRatios: Story = {
+  args: { src: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&h=450&fit=crop', alt: 'Image' },
   render: () => (
     <div className="grid grid-cols-2 gap-6 p-8 max-w-4xl">
       <div>
@@ -109,6 +110,7 @@ export const AllAspectRatios: Story = {
 
 // Story 3: All Rounded Options
 export const AllRoundedOptions: Story = {
+  args: { src: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=400&h=300&fit=crop', alt: 'Image' },
   render: () => (
     <div className="grid grid-cols-3 gap-6 p-8 max-w-6xl">
       <div>
@@ -183,6 +185,7 @@ export const AllRoundedOptions: Story = {
 
 // Story 4: With Caption
 export const WithCaption: Story = {
+  args: { src: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&h=450&fit=crop', alt: 'Image' },
   render: () => (
     <div className="max-w-3xl p-8 space-y-8">
       <Image
@@ -212,6 +215,7 @@ export const WithCaption: Story = {
 
 // Story 5: Case Study Images
 export const CaseStudyImages: Story = {
+  args: { src: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&h=450&fit=crop', alt: 'Image' },
   render: () => (
     <div className="max-w-4xl p-8 space-y-12">
       <div>
@@ -289,6 +293,7 @@ export const CaseStudyImages: Story = {
 
 // Story 6: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { src: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&h=450&fit=crop', alt: 'Image' },
   render: () => (
     <div className="bg-gray-50 p-12">
       <div className="max-w-4xl mx-auto space-y-12">
