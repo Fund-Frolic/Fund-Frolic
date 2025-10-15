@@ -640,6 +640,8 @@ export const Interactive: Story = {
     </div>
   ),
   args: {
+    trigger: 'Menu',
+    items: [],
     position: 'bottom-left',
   },
   parameters: {
