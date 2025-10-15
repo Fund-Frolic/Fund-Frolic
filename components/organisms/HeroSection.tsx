@@ -29,53 +29,54 @@ export const HeroSection = ({
   const hill2Ref = useRef<SVGSVGElement>(null);
   const rafRef = useRef<number | undefined>(undefined);
 
-  useEffect(() => {
-    // Cache measurements that don't change during scroll
-    let cachedSectionHeight = 0;
+  // TEMPORARILY DISABLED - Testing performance without animations
+  // useEffect(() => {
+  //   // Cache measurements that don't change during scroll
+  //   let cachedSectionHeight = 0;
 
-    const updateMeasurements = () => {
-      if (sectionRef.current) {
-        cachedSectionHeight = sectionRef.current.offsetHeight;
-      }
-    };
+  //   const updateMeasurements = () => {
+  //     if (sectionRef.current) {
+  //       cachedSectionHeight = sectionRef.current.offsetHeight;
+  //     }
+  //   };
 
-    updateMeasurements();
+  //   updateMeasurements();
 
-    const updateHills = () => {
-      if (!sectionRef.current || !hill1Ref.current || !hill2Ref.current) {
-        rafRef.current = requestAnimationFrame(updateHills);
-        return;
-      }
+  //   const updateHills = () => {
+  //     if (!sectionRef.current || !hill1Ref.current || !hill2Ref.current) {
+  //       rafRef.current = requestAnimationFrame(updateHills);
+  //       return;
+  //     }
 
-      // Only read scrollY each frame - everything else is cached
-      const scrollY = window.scrollY;
-      const progress = Math.max(0, Math.min(1, scrollY / (cachedSectionHeight / 2)));
+  //     // Only read scrollY each frame - everything else is cached
+  //     const scrollY = window.scrollY;
+  //     const progress = Math.max(0, Math.min(1, scrollY / (cachedSectionHeight / 2)));
 
-      // Directly update DOM - no React re-render
-      const opacity = (1 - progress).toString();
-      hill1Ref.current.style.transform = `translate3d(${-progress * 100}%, 0, 0)`;
-      hill1Ref.current.style.opacity = opacity;
-      hill2Ref.current.style.transform = `translate3d(${progress * 100}%, 0, 0)`;
-      hill2Ref.current.style.opacity = opacity;
+  //     // Directly update DOM - no React re-render
+  //     const opacity = (1 - progress).toString();
+  //     hill1Ref.current.style.transform = `translate3d(${-progress * 100}%, 0, 0)`;
+  //     hill1Ref.current.style.opacity = opacity;
+  //     hill2Ref.current.style.transform = `translate3d(${progress * 100}%, 0, 0)`;
+  //     hill2Ref.current.style.opacity = opacity;
 
-      // Keep the loop going
-      rafRef.current = requestAnimationFrame(updateHills);
-    };
+  //     // Keep the loop going
+  //     rafRef.current = requestAnimationFrame(updateHills);
+  //   };
 
-    // Update measurements on resize
-    const handleResize = () => updateMeasurements();
-    window.addEventListener('resize', handleResize);
+  //   // Update measurements on resize
+  //   const handleResize = () => updateMeasurements();
+  //   window.addEventListener('resize', handleResize);
 
-    // Start the animation loop
-    rafRef.current = requestAnimationFrame(updateHills);
+  //   // Start the animation loop
+  //   rafRef.current = requestAnimationFrame(updateHills);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //     if (rafRef.current) {
+  //       cancelAnimationFrame(rafRef.current);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <section

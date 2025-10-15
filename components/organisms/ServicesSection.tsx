@@ -26,60 +26,61 @@ export const ServicesSection = ({
   const cloud3Ref = useRef<SVGSVGElement>(null);
   const rafRef = useRef<number | undefined>(undefined);
 
-  useEffect(() => {
-    // Cache measurements that don't change during scroll
-    let cachedSectionTop = 0;
-    let cachedSectionHeight = 0;
-    let cachedWindowHeight = 0;
+  // TEMPORARILY DISABLED - Testing performance without animations
+  // useEffect(() => {
+  //   // Cache measurements that don't change during scroll
+  //   let cachedSectionTop = 0;
+  //   let cachedSectionHeight = 0;
+  //   let cachedWindowHeight = 0;
 
-    const updateMeasurements = () => {
-      if (sectionRef.current) {
-        cachedSectionTop = sectionRef.current.offsetTop;
-        cachedSectionHeight = sectionRef.current.offsetHeight;
-        cachedWindowHeight = window.innerHeight;
-      }
-    };
+  //   const updateMeasurements = () => {
+  //     if (sectionRef.current) {
+  //       cachedSectionTop = sectionRef.current.offsetTop;
+  //       cachedSectionHeight = sectionRef.current.offsetHeight;
+  //       cachedWindowHeight = window.innerHeight;
+  //     }
+  //   };
 
-    updateMeasurements();
+  //   updateMeasurements();
 
-    const updateClouds = () => {
-      if (!sectionRef.current || !cloud1Ref.current || !cloud2Ref.current || !cloud3Ref.current) {
-        rafRef.current = requestAnimationFrame(updateClouds);
-        return;
-      }
+  //   const updateClouds = () => {
+  //     if (!sectionRef.current || !cloud1Ref.current || !cloud2Ref.current || !cloud3Ref.current) {
+  //       rafRef.current = requestAnimationFrame(updateClouds);
+  //       return;
+  //     }
 
-      // Only read scrollY each frame - everything else is cached
-      const scrollY = window.scrollY;
-      const scrolledIntoSection = scrollY + cachedWindowHeight - cachedSectionTop;
-      const progress = Math.max(0, Math.min(1, scrolledIntoSection / (cachedSectionHeight * 0.6)));
+  //     // Only read scrollY each frame - everything else is cached
+  //     const scrollY = window.scrollY;
+  //     const scrolledIntoSection = scrollY + cachedWindowHeight - cachedSectionTop;
+  //     const progress = Math.max(0, Math.min(1, scrolledIntoSection / (cachedSectionHeight * 0.6)));
 
-      // Use transform instead of left/right to avoid layout recalculation
-      const opacity = Math.min(1, progress * 1.5).toString();
-      cloud1Ref.current.style.transform = `translateX(${-600 + progress * 1000}px)`;
-      cloud1Ref.current.style.opacity = opacity;
-      cloud2Ref.current.style.transform = `translateX(${800 - progress * 1200}px)`;
-      cloud2Ref.current.style.opacity = opacity;
-      cloud3Ref.current.style.transform = `translateX(${-500 + progress * 900}px)`;
-      cloud3Ref.current.style.opacity = opacity;
+  //     // Use transform instead of left/right to avoid layout recalculation
+  //     const opacity = Math.min(1, progress * 1.5).toString();
+  //     cloud1Ref.current.style.transform = `translateX(${-600 + progress * 1000}px)`;
+  //     cloud1Ref.current.style.opacity = opacity;
+  //     cloud2Ref.current.style.transform = `translateX(${800 - progress * 1200}px)`;
+  //     cloud2Ref.current.style.opacity = opacity;
+  //     cloud3Ref.current.style.transform = `translateX(${-500 + progress * 900}px)`;
+  //     cloud3Ref.current.style.opacity = opacity;
 
-      // Keep the loop going
-      rafRef.current = requestAnimationFrame(updateClouds);
-    };
+  //     // Keep the loop going
+  //     rafRef.current = requestAnimationFrame(updateClouds);
+  //   };
 
-    // Update measurements on resize
-    const handleResize = () => updateMeasurements();
-    window.addEventListener('resize', handleResize);
+  //   // Update measurements on resize
+  //   const handleResize = () => updateMeasurements();
+  //   window.addEventListener('resize', handleResize);
 
-    // Start the animation loop
-    rafRef.current = requestAnimationFrame(updateClouds);
+  //   // Start the animation loop
+  //   rafRef.current = requestAnimationFrame(updateClouds);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //     if (rafRef.current) {
+  //       cancelAnimationFrame(rafRef.current);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <section
@@ -98,7 +99,9 @@ export const ServicesSection = ({
           ref={cloud1Ref}
           className="absolute top-[15%] w-[400px] h-[220px]"
           style={{
-            filter: 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.15)) drop-shadow(0 8px 16px rgba(59, 130, 246, 0.1))'
+            filter: 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.15)) drop-shadow(0 8px 16px rgba(59, 130, 246, 0.1))',
+            transform: 'translateX(400px)',
+            opacity: 1
           }}
           viewBox="0 0 739.57 406.11"
           fill="none"
@@ -117,7 +120,9 @@ export const ServicesSection = ({
           ref={cloud2Ref}
           className="absolute top-[8%] w-[560px] h-[290px]"
           style={{
-            filter: 'drop-shadow(0 6px 12px rgba(59, 130, 246, 0.18)) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12))'
+            filter: 'drop-shadow(0 6px 12px rgba(59, 130, 246, 0.18)) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12))',
+            transform: 'translateX(-400px)',
+            opacity: 1
           }}
           viewBox="0 0 803.62 418.38"
           fill="none"
@@ -136,7 +141,9 @@ export const ServicesSection = ({
           ref={cloud3Ref}
           className="absolute top-[60%] w-[320px] h-[168px]"
           style={{
-            filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.2)) drop-shadow(0 8px 16px rgba(251, 191, 36, 0.12))'
+            filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.2)) drop-shadow(0 8px 16px rgba(251, 191, 36, 0.12))',
+            transform: 'translateX(400px)',
+            opacity: 1
           }}
           viewBox="0 0 771.72 406.13"
           fill="none"

@@ -23,54 +23,55 @@ export const StorySection = ({
   const sunRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | undefined>(undefined);
 
-  useEffect(() => {
-    // Cache measurements that don't change during scroll
-    let cachedSectionTop = 0;
-    let cachedSectionHeight = 0;
-    let cachedWindowHeight = 0;
+  // TEMPORARILY DISABLED - Testing performance without animations
+  // useEffect(() => {
+  //   // Cache measurements that don't change during scroll
+  //   let cachedSectionTop = 0;
+  //   let cachedSectionHeight = 0;
+  //   let cachedWindowHeight = 0;
 
-    const updateMeasurements = () => {
-      if (sectionRef.current) {
-        cachedSectionTop = sectionRef.current.offsetTop;
-        cachedSectionHeight = sectionRef.current.offsetHeight;
-        cachedWindowHeight = window.innerHeight;
-      }
-    };
+  //   const updateMeasurements = () => {
+  //     if (sectionRef.current) {
+  //       cachedSectionTop = sectionRef.current.offsetTop;
+  //       cachedSectionHeight = sectionRef.current.offsetHeight;
+  //       cachedWindowHeight = window.innerHeight;
+  //     }
+  //   };
 
-    updateMeasurements();
+  //   updateMeasurements();
 
-    const updateSun = () => {
-      if (!sectionRef.current || !sunRef.current) {
-        rafRef.current = requestAnimationFrame(updateSun);
-        return;
-      }
+  //   const updateSun = () => {
+  //     if (!sectionRef.current || !sunRef.current) {
+  //       rafRef.current = requestAnimationFrame(updateSun);
+  //       return;
+  //     }
 
-      // Only read scrollY each frame - everything else is cached
-      const scrollY = window.scrollY;
-      const scrolledIntoSection = scrollY + cachedWindowHeight - cachedSectionTop;
-      const progress = Math.max(0, Math.min(1, scrolledIntoSection / cachedSectionHeight));
+  //     // Only read scrollY each frame - everything else is cached
+  //     const scrollY = window.scrollY;
+  //     const scrolledIntoSection = scrollY + cachedWindowHeight - cachedSectionTop;
+  //     const progress = Math.max(0, Math.min(1, scrolledIntoSection / cachedSectionHeight));
 
-      // Directly update DOM
-      sunRef.current.style.transform = `translate(calc(${progress * 85}vw - ${progress * 600}px), calc(-${progress * 100}vh + ${progress * 600}px))`;
+  //     // Directly update DOM
+  //     sunRef.current.style.transform = `translate(calc(${progress * 85}vw - ${progress * 600}px), calc(-${progress * 100}vh + ${progress * 600}px))`;
 
-      // Keep the loop going
-      rafRef.current = requestAnimationFrame(updateSun);
-    };
+  //     // Keep the loop going
+  //     rafRef.current = requestAnimationFrame(updateSun);
+  //   };
 
-    // Update measurements on resize
-    const handleResize = () => updateMeasurements();
-    window.addEventListener('resize', handleResize);
+  //   // Update measurements on resize
+  //   const handleResize = () => updateMeasurements();
+  //   window.addEventListener('resize', handleResize);
 
-    // Start the animation loop
-    rafRef.current = requestAnimationFrame(updateSun);
+  //   // Start the animation loop
+  //   rafRef.current = requestAnimationFrame(updateSun);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //     if (rafRef.current) {
+  //       cancelAnimationFrame(rafRef.current);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <section
@@ -87,7 +88,8 @@ export const StorySection = ({
         ref={sunRef}
         className="absolute bottom-0 left-0 w-[600px] h-[600px] pointer-events-none"
         style={{
-          filter: 'drop-shadow(0 4px 12px rgba(252, 211, 77, 0.2)) drop-shadow(0 8px 24px rgba(252, 211, 77, 0.15))'
+          filter: 'drop-shadow(0 4px 12px rgba(252, 211, 77, 0.2)) drop-shadow(0 8px 24px rgba(252, 211, 77, 0.15))',
+          transform: 'translate(calc(85vw - 600px), calc(-100vh + 600px))'
         }}
         aria-hidden="true"
       >
@@ -149,13 +151,13 @@ export const StorySection = ({
             <Avatar
               src=""
               alt="Team Member 1"
-              fallback="JD"
+              fallback="GB"
               size="2xl"
               ring
               className="mb-6"
             />
             <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-              Jane Doe
+              Guenevere Blanchard
             </h3>
             <p className="font-body text-base text-primary font-medium mb-4">
               Co-Founder & Grant Strategist
@@ -170,16 +172,16 @@ export const StorySection = ({
             <Avatar
               src=""
               alt="Team Member 2"
-              fallback="JS"
+              fallback="LB"
               size="2xl"
               ring
               className="mb-6"
             />
             <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-              John Smith
+              Logan Bell
             </h3>
             <p className="font-body text-base text-primary font-medium mb-4">
-              Co-Founder & Grant Writer
+              Developer
             </p>
             <p className="font-body text-base text-muted-foreground leading-relaxed max-w-md">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
