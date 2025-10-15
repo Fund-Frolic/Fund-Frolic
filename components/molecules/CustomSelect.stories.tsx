@@ -53,6 +53,7 @@ const basicOptions: SelectOption[] = [
 
 // Story 1: Default
 export const Default: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [value, setValue] = useState<string>();
 
@@ -71,6 +72,7 @@ export const Default: Story = {
 
 // Story 2: All Sizes
 export const AllSizes: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [valueSm, setValueSm] = useState<string>();
     const [valueMd, setValueMd] = useState<string>();
@@ -127,6 +129,7 @@ export const AllSizes: Story = {
 
 // Story 3: States
 export const States: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [value1, setValue1] = useState<string>();
     const [value2, setValue2] = useState<string>('option2');
@@ -193,6 +196,7 @@ export const States: Story = {
 
 // Story 4: Design System Dropdown
 export const DesignSystemDropdown: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [value, setValue] = useState<string>();
 
@@ -240,6 +244,7 @@ export const DesignSystemDropdown: Story = {
 
 // Story 5: With Disabled Options
 export const WithDisabledOptions: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [value, setValue] = useState<string>();
 
@@ -277,6 +282,7 @@ export const WithDisabledOptions: Story = {
 
 // Story 6: Form Example
 export const FormExample: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [subject, setSubject] = useState<string>();
     const [priority, setPriority] = useState<string>('normal');
@@ -373,6 +379,7 @@ export const FormExample: Story = {
 
 // Story 7: Filter Controls
 export const FilterControls: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [tech, setTech] = useState<string>();
     const [status, setStatus] = useState<string>('all');
@@ -454,6 +461,7 @@ export const FilterControls: Story = {
 
 // Story 8: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [framework, setFramework] = useState<string>('nextjs');
     const [styling, setStyling] = useState<string>('tailwind');
@@ -516,6 +524,7 @@ export const OnWarmBackground: Story = {
 
 // Story 9: Comparison with Native
 export const ComparisonWithNative: Story = {
+  args: { options: [], value: '' },
   render: () => {
     const [customValue, setCustomValue] = useState<string>();
 
