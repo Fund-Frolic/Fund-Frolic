@@ -27,10 +27,11 @@ export const ServicesSection = ({
   const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    let ticking = false;
-
     const updateClouds = () => {
-      if (!sectionRef.current || !cloud1Ref.current || !cloud2Ref.current || !cloud3Ref.current) return;
+      if (!sectionRef.current || !cloud1Ref.current || !cloud2Ref.current || !cloud3Ref.current) {
+        rafRef.current = requestAnimationFrame(updateClouds);
+        return;
+      }
 
       const section = sectionRef.current;
       const sectionTop = section.offsetTop;
@@ -50,21 +51,14 @@ export const ServicesSection = ({
       cloud3Ref.current.style.left = `${-500 + progress * 900}px`;
       cloud3Ref.current.style.opacity = opacity;
 
-      ticking = false;
+      // Keep the loop going
+      rafRef.current = requestAnimationFrame(updateClouds);
     };
 
-    const handleScroll = () => {
-      if (!ticking) {
-        rafRef.current = requestAnimationFrame(updateClouds);
-        ticking = true;
-      }
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Start the animation loop
+    rafRef.current = requestAnimationFrame(updateClouds);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }

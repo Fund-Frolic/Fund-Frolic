@@ -24,10 +24,11 @@ export const StorySection = ({
   const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    let ticking = false;
-
     const updateSun = () => {
-      if (!sectionRef.current || !sunRef.current) return;
+      if (!sectionRef.current || !sunRef.current) {
+        rafRef.current = requestAnimationFrame(updateSun);
+        return;
+      }
 
       const section = sectionRef.current;
       const sectionTop = section.offsetTop;
@@ -41,21 +42,14 @@ export const StorySection = ({
       // Directly update DOM
       sunRef.current.style.transform = `translate(calc(${progress * 85}vw - ${progress * 600}px), calc(-${progress * 100}vh + ${progress * 600}px))`;
 
-      ticking = false;
+      // Keep the loop going
+      rafRef.current = requestAnimationFrame(updateSun);
     };
 
-    const handleScroll = () => {
-      if (!ticking) {
-        rafRef.current = requestAnimationFrame(updateSun);
-        ticking = true;
-      }
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Start the animation loop
+    rafRef.current = requestAnimationFrame(updateSun);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }

@@ -30,10 +30,11 @@ export const HeroSection = ({
   const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    let ticking = false;
-
     const updateHills = () => {
-      if (!sectionRef.current || !hill1Ref.current || !hill2Ref.current) return;
+      if (!sectionRef.current || !hill1Ref.current || !hill2Ref.current) {
+        rafRef.current = requestAnimationFrame(updateHills);
+        return;
+      }
 
       const sectionHeight = sectionRef.current.offsetHeight;
       const scrollY = window.scrollY;
@@ -48,21 +49,14 @@ export const HeroSection = ({
       hill2Ref.current.style.transform = `translate3d(${progress * 100}%, 0, 0)`;
       hill2Ref.current.style.opacity = opacity;
 
-      ticking = false;
+      // Keep the loop going
+      rafRef.current = requestAnimationFrame(updateHills);
     };
 
-    const handleScroll = () => {
-      if (!ticking) {
-        rafRef.current = requestAnimationFrame(updateHills);
-        ticking = true;
-      }
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Start the animation loop
+    rafRef.current = requestAnimationFrame(updateHills);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
