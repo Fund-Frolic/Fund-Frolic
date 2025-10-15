@@ -2,6 +2,7 @@ import { Header } from "@/components/organisms/Header";
 import { HeroSection } from "@/components/organisms/HeroSection";
 import { ServicesSection } from "@/components/organisms/ServicesSection";
 import { StorySection } from "@/components/organisms/StorySection";
+import { CTASection } from "@/components/organisms/CTASection";
 import { Footer } from "@/components/organisms/Footer";
 import { RollingHills } from "@/components/decorative/RollingHills";
 
@@ -14,6 +15,7 @@ export default function Home() {
           <HeroSection />
           <ServicesSection />
           <StorySection />
+          <CTASection />
           <Footer />
         </div>
       </div>

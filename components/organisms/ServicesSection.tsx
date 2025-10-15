@@ -1,15 +1,14 @@
 /**
  * ServicesSection Component
  *
- * Displays service offerings, target audience, and CTA for discovery call.
- * Three-column layout with clear information hierarchy.
+ * Displays service offerings with icons.
+ * Clean grid layout showcasing what we offer.
  * Includes scroll-animated clouds that cluster behind content.
  */
 
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/atoms/Button';
 import { useEffect, useState, useRef } from 'react';
 
 export interface ServicesSectionProps extends React.HTMLAttributes<HTMLElement> {
@@ -159,104 +158,78 @@ export const ServicesSection = ({
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
-            Ready to Raise Your Funding Barn?
+            What We Bring to the Barn-Raising
           </h2>
           <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Think barn-raising, but for your startup. We help you claim millions in grants, keep 100% of your equity, and actually have fun doing it.
+            We handle the heavy lifting so you can focus on building your company.
           </p>
         </div>
 
-        {/* Single Combined Section */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-6 sm:p-8 lg:p-10 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          {/* Service 1: Custom Funding Blueprint */}
+          <div className="group relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden transition-transform hover:scale-[1.02]">
             {/* Subtle texture overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
             <div className="relative">
-              {/* What We Bring Section */}
-              <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-4 sm:mb-6">
-                What We Bring to the Barn-Raising
-              </h3>
-
-              <div className="space-y-4 sm:space-y-5 mb-8 sm:mb-10 lg:mb-12">
-                <div>
-                  <h4 className="font-body text-sm sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">
-                    Your Custom Funding Blueprint
-                  </h4>
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    A tailored roadmap showing exactly which grants fit your stage, industry, and vision — no guesswork.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-body text-sm sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">
-                    Full-Service Grant Writing
-                  </h4>
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    We handle the research, writing, compliance, and submission. You focus on building your company.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-body text-sm sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">
-                    End-to-End Support
-                  </h4>
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    We continuously track new opportunities across federal, state, and private sources, then handle impact reporting and documentation to keep you eligible for future funding rounds.
-                  </p>
-                </div>
+              {/* Icon */}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
               </div>
 
-              {/* Divider */}
-              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-8 sm:mb-10 lg:mb-12" />
-
-              {/* Let's Get Started Section */}
-              <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-4 sm:mb-6">
-                Let's Get Your Barn Raised
+              <h3 className="font-display text-base sm:text-lg lg:text-xl font-bold text-foreground mb-2 sm:mb-3">
+                Custom Funding Blueprint
               </h3>
-
-              <p className="font-body text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
-                Jump on a discovery call and we'll map out:
+              <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                A tailored roadmap showing exactly which grants fit your stage, industry, and vision — no guesswork.
               </p>
+            </div>
+          </div>
 
-              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                <div className="flex items-start gap-2 sm:gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    Which grants you qualify for right now (spoiler: probably more than you think)
-                  </p>
-                </div>
+          {/* Service 2: Full-Service Grant Writing */}
+          <div className="group relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden transition-transform hover:scale-[1.02]">
+            {/* Subtle texture overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
-                <div className="flex items-start gap-2 sm:gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    How to weave grants into your capital stack without the headaches
-                  </p>
-                </div>
-
-                <div className="flex items-start gap-2 sm:gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    The fastest route to your first (or next) funded project
-                  </p>
-                </div>
+            <div className="relative">
+              {/* Icon */}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
               </div>
 
-              <Button variant="primary" size="lg" className="w-full">
-                Book Your Discovery Call
-              </Button>
+              <h3 className="font-display text-base sm:text-lg lg:text-xl font-bold text-foreground mb-2 sm:mb-3">
+                Full-Service Grant Writing
+              </h3>
+              <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                We handle the research, writing, compliance, and submission. You focus on building your company.
+              </p>
+            </div>
+          </div>
+
+          {/* Service 3: End-to-End Support */}
+          <div className="group relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden transition-transform hover:scale-[1.02]">
+            {/* Subtle texture overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
+
+            <div className="relative">
+              {/* Icon */}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+
+              <h3 className="font-display text-base sm:text-lg lg:text-xl font-bold text-foreground mb-2 sm:mb-3">
+                End-to-End Support
+              </h3>
+              <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                We continuously track new opportunities across federal, state, and private sources, then handle impact reporting and documentation to keep you eligible for future funding rounds.
+              </p>
             </div>
           </div>
         </div>
