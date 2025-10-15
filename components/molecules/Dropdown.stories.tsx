@@ -80,6 +80,7 @@ const CheckIcon = () => (
 
 // Story 1: User Menu
 export const UserMenu: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => {
     const [lastAction, setLastAction] = useState<string>('');
 
@@ -132,6 +133,7 @@ export const UserMenu: Story = {
 
 // Story 2: Filter Dropdown
 export const FilterDropdown: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => {
     const [filter, setFilter] = useState<string>('all');
 
@@ -185,6 +187,7 @@ export const FilterDropdown: Story = {
 
 // Story 3: Sort Dropdown
 export const SortDropdown: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => {
     const [sort, setSort] = useState<string>('date');
 
@@ -232,6 +235,7 @@ export const SortDropdown: Story = {
 
 // Story 4: Different Positions
 export const DifferentPositions: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="flex flex-col items-center gap-48 p-16">
       <div className="flex gap-8">
@@ -290,6 +294,7 @@ export const DifferentPositions: Story = {
 
 // Story 5: With Disabled Items
 export const WithDisabledItems: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="p-8">
       <Dropdown
@@ -333,6 +338,7 @@ export const WithDisabledItems: Story = {
 
 // Story 6: Keyboard Navigation Demo
 export const KeyboardNavigationDemo: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="p-8">
       <div className="bg-gray-100 p-6 rounded-md mb-4">
@@ -381,6 +387,7 @@ export const KeyboardNavigationDemo: Story = {
 
 // Story 7: With Icons
 export const WithIcons: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="p-8">
       <Dropdown
@@ -420,6 +427,7 @@ export const WithIcons: Story = {
 
 // Story 8: Multiple Dividers
 export const MultipleDividers: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="p-8">
       <Dropdown
@@ -450,6 +458,7 @@ export const MultipleDividers: Story = {
 
 // Story 9: Long Menu
 export const LongMenu: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="p-8">
       <Dropdown
@@ -473,6 +482,7 @@ export const LongMenu: Story = {
 
 // Story 10: Different Button Variants
 export const DifferentButtonVariants: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="flex gap-4 p-8">
       <Dropdown
@@ -519,6 +529,7 @@ export const DifferentButtonVariants: Story = {
 
 // Story 11: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { trigger: 'Menu', items: [] },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">
