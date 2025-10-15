@@ -93,7 +93,7 @@ export const HeroSection = ({
         {/* RollingHillOne - slides left */}
         <svg
           ref={hill1Ref}
-          className="absolute bottom-0 left-0 w-full h-[800px] sm:h-[1000px] lg:h-[1200px]"
+          className="absolute bottom-0 left-0 w-full h-[600px] sm:h-[800px] md:h-[900px] lg:h-[1000px] xl:h-[1200px]"
           viewBox="0 0 1440 600"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ export const HeroSection = ({
         {/* RollingHillTwo - slides right */}
         <svg
           ref={hill2Ref}
-          className="absolute bottom-0 left-0 w-full h-[600px] sm:h-[800px] lg:h-[1000px]"
+          className="absolute bottom-0 left-0 w-full h-[500px] sm:h-[650px] md:h-[750px] lg:h-[850px] xl:h-[1000px]"
           style={{
             filter: 'drop-shadow(0 -4px 12px rgba(251, 191, 36, 0.3)) drop-shadow(0 -8px 24px rgba(251, 191, 36, 0.2))'
           }}

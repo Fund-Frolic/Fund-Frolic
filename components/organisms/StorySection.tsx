@@ -86,10 +86,10 @@ export const StorySection = ({
       {/* Rising Sun - bottom-left to top-right */}
       <div
         ref={sunRef}
-        className="absolute bottom-0 left-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] pointer-events-none"
+        className="absolute bottom-0 left-0 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px] lg:w-[480px] lg:h-[480px] xl:w-[600px] xl:h-[600px] pointer-events-none"
         style={{
           filter: 'drop-shadow(0 4px 12px rgba(252, 211, 77, 0.2)) drop-shadow(0 8px 24px rgba(252, 211, 77, 0.15))',
-          transform: 'translate(calc(85vw - 300px), calc(-100vh + 300px))'
+          transform: 'translate(calc(85vw - 200px), calc(-100vh + 200px))'
         }}
         aria-hidden="true"
       >

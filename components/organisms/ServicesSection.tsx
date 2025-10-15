@@ -97,7 +97,7 @@ export const ServicesSection = ({
         {/* Cloud 1 */}
         <svg
           ref={cloud1Ref}
-          className="absolute top-[35%] left-[10%] w-[200px] sm:w-[300px] lg:w-[400px] h-auto"
+          className="absolute top-[35%] left-[10%] w-[140px] sm:w-[200px] md:w-[280px] lg:w-[360px] xl:w-[400px] h-auto"
           style={{
             filter: 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.15)) drop-shadow(0 8px 16px rgba(59, 130, 246, 0.1))',
             opacity: 1
@@ -117,7 +117,7 @@ export const ServicesSection = ({
         {/* Cloud 2 */}
         <svg
           ref={cloud2Ref}
-          className="absolute top-[25%] right-[8%] w-[280px] sm:w-[420px] lg:w-[560px] h-auto"
+          className="absolute top-[25%] right-[8%] w-[200px] sm:w-[280px] md:w-[380px] lg:w-[480px] xl:w-[560px] h-auto"
           style={{
             filter: 'drop-shadow(0 6px 12px rgba(59, 130, 246, 0.18)) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12))',
             opacity: 1
@@ -137,7 +137,7 @@ export const ServicesSection = ({
         {/* Cloud 3 */}
         <svg
           ref={cloud3Ref}
-          className="absolute top-[55%] left-[15%] w-[160px] sm:w-[240px] lg:w-[320px] h-auto"
+          className="absolute top-[55%] left-[15%] w-[110px] sm:w-[160px] md:w-[220px] lg:w-[280px] xl:w-[320px] h-auto"
           style={{
             filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.2)) drop-shadow(0 8px 16px rgba(251, 191, 36, 0.12))',
             opacity: 1
