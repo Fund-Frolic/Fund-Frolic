@@ -130,6 +130,7 @@ export const RequiredWithHint: Story = {
 
 // Story 5: Form Example
 export const FormExample: Story = {
+  args: { htmlFor: 'example', children: 'Label' },
   render: () => (
     <div className="w-full max-w-md p-8">
       <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6">
@@ -193,6 +194,7 @@ export const FormExample: Story = {
 
 // Story 6: All Variants
 export const AllVariants: Story = {
+  args: { htmlFor: 'example', children: 'Label' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div>
@@ -259,6 +261,7 @@ export const AllVariants: Story = {
 
 // Story 7: Accessibility Pattern
 export const AccessibilityPattern: Story = {
+  args: { htmlFor: 'example', children: 'Label' },
   render: () => (
     <div className="max-w-2xl p-8 space-y-6">
       <div className="bg-gray-100 p-4 rounded-md">
@@ -317,6 +320,7 @@ export const AccessibilityPattern: Story = {
 
 // Story 8: On Warm Background
 export const OnWarmBackground: Story = {
+  args: { htmlFor: 'example', children: 'Label' },
   render: () => (
     <div className="bg-gray-50 p-12">
       <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
