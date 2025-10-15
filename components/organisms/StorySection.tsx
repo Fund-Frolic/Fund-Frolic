@@ -24,20 +24,31 @@ export const StorySection = ({
   const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
+    // Cache measurements that don't change during scroll
+    let cachedSectionTop = 0;
+    let cachedSectionHeight = 0;
+    let cachedWindowHeight = 0;
+
+    const updateMeasurements = () => {
+      if (sectionRef.current) {
+        cachedSectionTop = sectionRef.current.offsetTop;
+        cachedSectionHeight = sectionRef.current.offsetHeight;
+        cachedWindowHeight = window.innerHeight;
+      }
+    };
+
+    updateMeasurements();
+
     const updateSun = () => {
       if (!sectionRef.current || !sunRef.current) {
         rafRef.current = requestAnimationFrame(updateSun);
         return;
       }
 
-      const section = sectionRef.current;
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
+      // Only read scrollY each frame - everything else is cached
       const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-
-      const scrolledIntoSection = scrollY + windowHeight - sectionTop;
-      const progress = Math.max(0, Math.min(1, scrolledIntoSection / sectionHeight));
+      const scrolledIntoSection = scrollY + cachedWindowHeight - cachedSectionTop;
+      const progress = Math.max(0, Math.min(1, scrolledIntoSection / cachedSectionHeight));
 
       // Directly update DOM
       sunRef.current.style.transform = `translate(calc(${progress * 85}vw - ${progress * 600}px), calc(-${progress * 100}vh + ${progress * 600}px))`;
@@ -46,10 +57,15 @@ export const StorySection = ({
       rafRef.current = requestAnimationFrame(updateSun);
     };
 
+    // Update measurements on resize
+    const handleResize = () => updateMeasurements();
+    window.addEventListener('resize', handleResize);
+
     // Start the animation loop
     rafRef.current = requestAnimationFrame(updateSun);
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }

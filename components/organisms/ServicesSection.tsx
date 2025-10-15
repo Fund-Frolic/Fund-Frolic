@@ -27,38 +27,54 @@ export const ServicesSection = ({
   const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
+    // Cache measurements that don't change during scroll
+    let cachedSectionTop = 0;
+    let cachedSectionHeight = 0;
+    let cachedWindowHeight = 0;
+
+    const updateMeasurements = () => {
+      if (sectionRef.current) {
+        cachedSectionTop = sectionRef.current.offsetTop;
+        cachedSectionHeight = sectionRef.current.offsetHeight;
+        cachedWindowHeight = window.innerHeight;
+      }
+    };
+
+    updateMeasurements();
+
     const updateClouds = () => {
       if (!sectionRef.current || !cloud1Ref.current || !cloud2Ref.current || !cloud3Ref.current) {
         rafRef.current = requestAnimationFrame(updateClouds);
         return;
       }
 
-      const section = sectionRef.current;
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
+      // Only read scrollY each frame - everything else is cached
       const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
+      const scrolledIntoSection = scrollY + cachedWindowHeight - cachedSectionTop;
+      const progress = Math.max(0, Math.min(1, scrolledIntoSection / (cachedSectionHeight * 0.6)));
 
-      const scrolledIntoSection = scrollY + windowHeight - sectionTop;
-      const progress = Math.max(0, Math.min(1, scrolledIntoSection / (sectionHeight * 0.6)));
-
-      // Directly update DOM
+      // Use transform instead of left/right to avoid layout recalculation
       const opacity = Math.min(1, progress * 1.5).toString();
-      cloud1Ref.current.style.left = `${-600 + progress * 1000}px`;
+      cloud1Ref.current.style.transform = `translateX(${-600 + progress * 1000}px)`;
       cloud1Ref.current.style.opacity = opacity;
-      cloud2Ref.current.style.right = `${-800 + progress * 1200}px`;
+      cloud2Ref.current.style.transform = `translateX(${800 - progress * 1200}px)`;
       cloud2Ref.current.style.opacity = opacity;
-      cloud3Ref.current.style.left = `${-500 + progress * 900}px`;
+      cloud3Ref.current.style.transform = `translateX(${-500 + progress * 900}px)`;
       cloud3Ref.current.style.opacity = opacity;
 
       // Keep the loop going
       rafRef.current = requestAnimationFrame(updateClouds);
     };
 
+    // Update measurements on resize
+    const handleResize = () => updateMeasurements();
+    window.addEventListener('resize', handleResize);
+
     // Start the animation loop
     rafRef.current = requestAnimationFrame(updateClouds);
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }

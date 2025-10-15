@@ -30,17 +30,26 @@ export const HeroSection = ({
   const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
+    // Cache measurements that don't change during scroll
+    let cachedSectionHeight = 0;
+
+    const updateMeasurements = () => {
+      if (sectionRef.current) {
+        cachedSectionHeight = sectionRef.current.offsetHeight;
+      }
+    };
+
+    updateMeasurements();
+
     const updateHills = () => {
       if (!sectionRef.current || !hill1Ref.current || !hill2Ref.current) {
         rafRef.current = requestAnimationFrame(updateHills);
         return;
       }
 
-      const sectionHeight = sectionRef.current.offsetHeight;
+      // Only read scrollY each frame - everything else is cached
       const scrollY = window.scrollY;
-
-      // Progress from 0 to 1 as we scroll from top to halfway through section 1
-      const progress = Math.max(0, Math.min(1, scrollY / (sectionHeight / 2)));
+      const progress = Math.max(0, Math.min(1, scrollY / (cachedSectionHeight / 2)));
 
       // Directly update DOM - no React re-render
       const opacity = (1 - progress).toString();
@@ -53,10 +62,15 @@ export const HeroSection = ({
       rafRef.current = requestAnimationFrame(updateHills);
     };
 
+    // Update measurements on resize
+    const handleResize = () => updateMeasurements();
+    window.addEventListener('resize', handleResize);
+
     // Start the animation loop
     rafRef.current = requestAnimationFrame(updateHills);
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
