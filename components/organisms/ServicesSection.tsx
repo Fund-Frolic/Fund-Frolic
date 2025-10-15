@@ -166,8 +166,8 @@ export const ServicesSection = ({
           </p>
         </div>
 
-        {/* Three Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Two Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Block 1: What We Deliver */}
           <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
             {/* Subtle texture overlay */}
@@ -199,42 +199,17 @@ export const ServicesSection = ({
 
                 <div>
                   <h4 className="font-body text-base font-semibold text-foreground mb-2">
-                    Always-On Funding Pipeline
+                    End-to-End Support
                   </h4>
                   <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                    We continuously track new opportunities across federal, state, and private sources so you never miss out.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-body text-base font-semibold text-foreground mb-2">
-                    Post-Award Support
-                  </h4>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                    Impact reporting and documentation that keeps you eligible for future funding rounds.
+                    We continuously track new opportunities across federal, state, and private sources, then handle impact reporting and documentation to keep you eligible for future funding rounds.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Block 2: Built for Founders */}
-          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
-            {/* Subtle texture overlay */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
-
-            <div className="relative">
-              <h3 className="font-display text-2xl font-bold text-foreground mb-6">
-                Your Funding Crew, Coast to Coast
-              </h3>
-
-              <p className="font-body text-base text-muted-foreground leading-relaxed">
-                From scrappy early-stage startups to growing social ventures, we've got founders covered in all 50 states. Building climate tech in Colorado? Launching health innovation in New York? We help you claim the funding that's already out there waiting for you — no equity required.
-              </p>
-            </div>
-          </div>
-
-          {/* Block 3: Let's Build Your Engine */}
+          {/* Block 2: Let's Build Your Engine */}
           <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
             {/* Subtle texture overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
