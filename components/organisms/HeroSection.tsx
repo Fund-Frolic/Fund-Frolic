@@ -244,7 +244,7 @@ export const HeroSection = ({
           </div>
 
           {/* Right side - AI Chat Interface */}
-          <div className="w-full h-[320px] sm:h-[400px] lg:h-[600px]">
+          <div className="w-full h-[320px] sm:h-[400px] lg:h-[600px] pt-4 sm:pt-6 lg:pt-8">
             {/* Main container with sophisticated floating elevation */}
             <div className="relative w-full h-full bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08),0_32px_64px_-12px_rgba(37,99,235,0.04)] backdrop-blur-md flex flex-col overflow-hidden">
               {/* Subtle texture overlay */}
