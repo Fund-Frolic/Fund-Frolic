@@ -31,25 +31,35 @@ const textVariants = cva(
   }
 );
 
-export interface TextProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof textVariants> {
-  /** HTML element to render */
-  as?: 'p' | 'span' | 'div' | 'label';
-}
+type TextElement = 'p' | 'span' | 'div' | 'label';
 
-export const Text = ({
-  as: Component = 'p',
+type ElementProps<T extends TextElement> = T extends 'label'
+  ? React.LabelHTMLAttributes<HTMLLabelElement>
+  : T extends 'div'
+  ? React.HTMLAttributes<HTMLDivElement>
+  : T extends 'span'
+  ? React.HTMLAttributes<HTMLSpanElement>
+  : React.HTMLAttributes<HTMLParagraphElement>;
+
+export type TextProps<T extends TextElement = 'p'> = ElementProps<T> &
+  VariantProps<typeof textVariants> & {
+    /** HTML element to render */
+    as?: T;
+  };
+
+export const Text = <T extends TextElement = 'p'>({
+  as,
   className,
   variant,
   weight,
   children,
   ...props
-}: TextProps) => {
+}: TextProps<T>) => {
+  const Component = (as || 'p') as TextElement;
   return (
     <Component
       className={cn(textVariants({ variant, weight }), className)}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </Component>
