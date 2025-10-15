@@ -94,13 +94,12 @@ export const ServicesSection = ({
     >
       {/* Scroll-animated clouds - behind content */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {/* Cloud 1 - Coming from left */}
+        {/* Cloud 1 */}
         <svg
           ref={cloud1Ref}
-          className="absolute top-[15%] w-[400px] h-[220px]"
+          className="absolute top-[35%] left-[10%] w-[400px] h-[220px]"
           style={{
             filter: 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.15)) drop-shadow(0 8px 16px rgba(59, 130, 246, 0.1))',
-            transform: 'translateX(400px)',
             opacity: 1
           }}
           viewBox="0 0 739.57 406.11"
@@ -115,13 +114,12 @@ export const ServicesSection = ({
           />
         </svg>
 
-        {/* Cloud 2 - Coming from right */}
+        {/* Cloud 2 */}
         <svg
           ref={cloud2Ref}
-          className="absolute top-[8%] w-[560px] h-[290px]"
+          className="absolute top-[25%] right-[8%] w-[560px] h-[290px]"
           style={{
             filter: 'drop-shadow(0 6px 12px rgba(59, 130, 246, 0.18)) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12))',
-            transform: 'translateX(-400px)',
             opacity: 1
           }}
           viewBox="0 0 803.62 418.38"
@@ -136,13 +134,12 @@ export const ServicesSection = ({
           />
         </svg>
 
-        {/* Cloud 3 - Coming from left, lower */}
+        {/* Cloud 3 */}
         <svg
           ref={cloud3Ref}
-          className="absolute top-[60%] w-[320px] h-[168px]"
+          className="absolute top-[55%] left-[15%] w-[320px] h-[168px]"
           style={{
             filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.2)) drop-shadow(0 8px 16px rgba(251, 191, 36, 0.12))',
-            transform: 'translateX(400px)',
             opacity: 1
           }}
           viewBox="0 0 771.72 406.13"
