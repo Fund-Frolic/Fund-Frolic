@@ -33,6 +33,7 @@
     "@storybook/addon-vitest": "^9.1.10",
     "@storybook/nextjs-vite": "^9.1.10",
     "@tailwindcss/postcss": "^4.1.14",
+    "@types/flubber": "^0.4.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
