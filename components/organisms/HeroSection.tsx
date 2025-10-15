@@ -133,11 +133,11 @@ export const HeroSection = ({
             </Badge>
 
             {/* Main headline with strategic color */}
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-foreground">
+            <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight tracking-tight text-foreground">
               The funding buddy you actually want on your team.
             </h1>
 
-            <p className="font-body text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
               Millions in federal, state, and private grants go unclaimed every year… and a bunch of them could be perfect for your startup. Type your project idea into our{' '}
               <span className="font-semibold text-primary">AI Grant Finder</span>, and we'll match you with the grants that actually make sense for you. No equity. No shady term sheets. Just funding opportunities that let you scale fast, stay in control, and actually enjoy the ride.
             </p>
@@ -158,10 +158,10 @@ export const HeroSection = ({
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-body text-base font-medium text-foreground">
+                  <h3 className="font-body text-sm sm:text-base font-medium text-foreground">
                     AI Grant Finder
                   </h3>
-                  <p className="font-body text-sm text-muted-foreground/60 mt-0.5">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground/60 mt-0.5">
                     Powered by Fund Frolic
                   </p>
                 </div>
@@ -177,12 +177,12 @@ export const HeroSection = ({
                     </svg>
                   </div>
                   <div className="flex-1 max-w-[82%]">
-                    <div className="bg-gradient-to-br from-blue-50 via-blue-50/80 to-blue-100/60 rounded-[20px] rounded-tl-sm px-6 py-5 shadow-[0_1px_2px_rgba(37,99,235,0.10),0_4px_12px_-2px_rgba(37,99,235,0.08),0_12px_24px_-4px_rgba(37,99,235,0.05),0_20px_40px_-8px_rgba(37,99,235,0.03)]">
-                      <p className="font-body text-base text-foreground leading-[1.7]">
+                    <div className="bg-gradient-to-br from-blue-50 via-blue-50/80 to-blue-100/60 rounded-[20px] rounded-tl-sm px-4 py-3 sm:px-6 sm:py-5 shadow-[0_1px_2px_rgba(37,99,235,0.10),0_4px_12px_-2px_rgba(37,99,235,0.08),0_12px_24px_-4px_rgba(37,99,235,0.05),0_20px_40px_-8px_rgba(37,99,235,0.03)]">
+                      <p className="font-body text-sm sm:text-base text-foreground leading-[1.7]">
                         Hi! I'm your AI grant finder. Tell me about your startup or project, and I'll find matching grants for you.
                       </p>
                     </div>
-                    <span className="font-body text-xs text-muted-foreground/80 mt-3 ml-2 inline-block">
+                    <span className="font-body text-xs text-muted-foreground/80 mt-2 sm:mt-3 ml-2 inline-block">
                       Just now
                     </span>
                   </div>
@@ -191,8 +191,8 @@ export const HeroSection = ({
                 {/* User Message */}
                 <div className="flex items-start gap-5 justify-end animate-in fade-in slide-in-from-right duration-500">
                   <div className="flex-1 max-w-[82%] text-right">
-                    <div className="inline-block bg-gradient-to-br from-background-elevated to-background/95 rounded-[20px] rounded-tr-sm px-6 py-5 shadow-[0_1px_2px_rgba(107,114,128,0.08),0_4px_12px_-2px_rgba(107,114,128,0.06),0_12px_24px_-4px_rgba(107,114,128,0.04),0_20px_40px_-8px_rgba(107,114,128,0.02)]">
-                      <p className="font-body text-base text-foreground leading-[1.7] text-left">
+                    <div className="inline-block bg-gradient-to-br from-background-elevated to-background/95 rounded-[20px] rounded-tr-sm px-4 py-3 sm:px-6 sm:py-5 shadow-[0_1px_2px_rgba(107,114,128,0.08),0_4px_12px_-2px_rgba(107,114,128,0.06),0_12px_24px_-4px_rgba(107,114,128,0.04),0_20px_40px_-8px_rgba(107,114,128,0.02)]">
+                      <p className="font-body text-sm sm:text-base text-foreground leading-[1.7] text-left">
                         I'm building a climate tech startup focused on carbon capture technology for small businesses.
                       </p>
                     </div>
@@ -210,52 +210,52 @@ export const HeroSection = ({
                     </svg>
                   </div>
                   <div className="flex-1 max-w-[82%]">
-                    <div className="bg-gradient-to-br from-blue-50 via-blue-50/80 to-blue-100/60 rounded-[20px] rounded-tl-sm px-6 py-5 shadow-[0_1px_2px_rgba(37,99,235,0.10),0_4px_12px_-2px_rgba(37,99,235,0.08),0_12px_24px_-4px_rgba(37,99,235,0.05),0_20px_40px_-8px_rgba(37,99,235,0.03)]">
-                      <p className="font-body text-base text-foreground leading-[1.7] mb-5">
+                    <div className="bg-gradient-to-br from-blue-50 via-blue-50/80 to-blue-100/60 rounded-[20px] rounded-tl-sm px-4 py-3 sm:px-6 sm:py-5 shadow-[0_1px_2px_rgba(37,99,235,0.10),0_4px_12px_-2px_rgba(37,99,235,0.08),0_12px_24px_-4px_rgba(37,99,235,0.05),0_20px_40px_-8px_rgba(37,99,235,0.03)]">
+                      <p className="font-body text-sm sm:text-base text-foreground leading-[1.7] mb-3 sm:mb-5">
                         Great! I found <span className="font-semibold text-primary">3 matching grants</span> for your climate tech startup:
                       </p>
 
                       {/* Grant card 1 - Premium elevation */}
-                      <div className="group bg-background rounded-[16px] p-5 mb-4 shadow-[0_1px_2px_rgba(59,130,246,0.08),0_4px_8px_-2px_rgba(59,130,246,0.06),0_8px_16px_-4px_rgba(59,130,246,0.04),0_16px_32px_-8px_rgba(59,130,246,0.02)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.12),0_8px_16px_-2px_rgba(37,99,235,0.10),0_16px_32px_-4px_rgba(37,99,235,0.08),0_24px_48px_-8px_rgba(37,99,235,0.06)] transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 cursor-pointer">
-                        <div className="flex items-start justify-between gap-4 mb-2.5">
-                          <h4 className="font-body text-[15px] font-semibold text-foreground leading-[1.5] group-hover:text-primary transition-colors duration-300">
+                      <div className="group bg-background rounded-[16px] p-3 sm:p-5 mb-3 sm:mb-4 shadow-[0_1px_2px_rgba(59,130,246,0.08),0_4px_8px_-2px_rgba(59,130,246,0.06),0_8px_16px_-4px_rgba(59,130,246,0.04),0_16px_32px_-8px_rgba(59,130,246,0.02)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.12),0_8px_16px_-2px_rgba(37,99,235,0.10),0_16px_32px_-4px_rgba(37,99,235,0.08),0_24px_48px_-8px_rgba(37,99,235,0.06)] transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 cursor-pointer">
+                        <div className="flex items-start justify-between gap-2 sm:gap-4 mb-1.5 sm:mb-2.5">
+                          <h4 className="font-body text-xs sm:text-sm lg:text-[15px] font-semibold text-foreground leading-[1.5] group-hover:text-primary transition-colors duration-300">
                             DOE Small Business Innovation Research
                           </h4>
-                          <span className="flex-shrink-0 px-3.5 py-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white text-xs font-bold rounded-full shadow-[0_1px_2px_rgba(245,158,11,0.30),0_4px_8px_rgba(245,158,11,0.25),0_8px_16px_rgba(245,158,11,0.15)]">
+                          <span className="flex-shrink-0 px-2 py-1 sm:px-3.5 sm:py-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white text-[10px] sm:text-xs font-bold rounded-full shadow-[0_1px_2px_rgba(245,158,11,0.30),0_4px_8px_rgba(245,158,11,0.25),0_8px_16px_rgba(245,158,11,0.15)]">
                             $250K
                           </span>
                         </div>
-                        <p className="font-body text-[13px] text-muted-foreground leading-[1.6]">
+                        <p className="font-body text-[11px] sm:text-xs lg:text-[13px] text-muted-foreground leading-[1.6]">
                           Federal • 94% match • Deadline: Jan 15
                         </p>
                       </div>
 
                       {/* Grant card 2 */}
-                      <div className="group bg-background rounded-[16px] p-5 mb-4 shadow-[0_1px_2px_rgba(59,130,246,0.08),0_4px_8px_-2px_rgba(59,130,246,0.06),0_8px_16px_-4px_rgba(59,130,246,0.04),0_16px_32px_-8px_rgba(59,130,246,0.02)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.12),0_8px_16px_-2px_rgba(37,99,235,0.10),0_16px_32px_-4px_rgba(37,99,235,0.08),0_24px_48px_-8px_rgba(37,99,235,0.06)] transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 cursor-pointer">
-                        <div className="flex items-start justify-between gap-4 mb-2.5">
-                          <h4 className="font-body text-[15px] font-semibold text-foreground leading-[1.5] group-hover:text-primary transition-colors duration-300">
+                      <div className="group bg-background rounded-[16px] p-3 sm:p-5 mb-3 sm:mb-4 shadow-[0_1px_2px_rgba(59,130,246,0.08),0_4px_8px_-2px_rgba(59,130,246,0.06),0_8px_16px_-4px_rgba(59,130,246,0.04),0_16px_32px_-8px_rgba(59,130,246,0.02)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.12),0_8px_16px_-2px_rgba(37,99,235,0.10),0_16px_32px_-4px_rgba(37,99,235,0.08),0_24px_48px_-8px_rgba(37,99,235,0.06)] transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 cursor-pointer">
+                        <div className="flex items-start justify-between gap-2 sm:gap-4 mb-1.5 sm:mb-2.5">
+                          <h4 className="font-body text-xs sm:text-sm lg:text-[15px] font-semibold text-foreground leading-[1.5] group-hover:text-primary transition-colors duration-300">
                             EPA Climate Tech Innovation Fund
                           </h4>
-                          <span className="flex-shrink-0 px-3.5 py-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white text-xs font-bold rounded-full shadow-[0_1px_2px_rgba(245,158,11,0.30),0_4px_8px_rgba(245,158,11,0.25),0_8px_16px_rgba(245,158,11,0.15)]">
+                          <span className="flex-shrink-0 px-2 py-1 sm:px-3.5 sm:py-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white text-[10px] sm:text-xs font-bold rounded-full shadow-[0_1px_2px_rgba(245,158,11,0.30),0_4px_8px_rgba(245,158,11,0.25),0_8px_16px_rgba(245,158,11,0.15)]">
                             $500K
                           </span>
                         </div>
-                        <p className="font-body text-[13px] text-muted-foreground leading-[1.6]">
+                        <p className="font-body text-[11px] sm:text-xs lg:text-[13px] text-muted-foreground leading-[1.6]">
                           Federal • 91% match • Deadline: Feb 1
                         </p>
                       </div>
 
                       {/* Grant card 3 */}
-                      <div className="group bg-background rounded-[16px] p-5 shadow-[0_1px_2px_rgba(59,130,246,0.08),0_4px_8px_-2px_rgba(59,130,246,0.06),0_8px_16px_-4px_rgba(59,130,246,0.04),0_16px_32px_-8px_rgba(59,130,246,0.02)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.12),0_8px_16px_-2px_rgba(37,99,235,0.10),0_16px_32px_-4px_rgba(37,99,235,0.08),0_24px_48px_-8px_rgba(37,99,235,0.06)] transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 cursor-pointer">
-                        <div className="flex items-start justify-between gap-4 mb-2.5">
-                          <h4 className="font-body text-[15px] font-semibold text-foreground leading-[1.5] group-hover:text-primary transition-colors duration-300">
+                      <div className="group bg-background rounded-[16px] p-3 sm:p-5 shadow-[0_1px_2px_rgba(59,130,246,0.08),0_4px_8px_-2px_rgba(59,130,246,0.06),0_8px_16px_-4px_rgba(59,130,246,0.04),0_16px_32px_-8px_rgba(59,130,246,0.02)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.12),0_8px_16px_-2px_rgba(37,99,235,0.10),0_16px_32px_-4px_rgba(37,99,235,0.08),0_24px_48px_-8px_rgba(37,99,235,0.06)] transition-all duration-300 hover:scale-[1.03] hover:-translate-y-1 cursor-pointer">
+                        <div className="flex items-start justify-between gap-2 sm:gap-4 mb-1.5 sm:mb-2.5">
+                          <h4 className="font-body text-xs sm:text-sm lg:text-[15px] font-semibold text-foreground leading-[1.5] group-hover:text-primary transition-colors duration-300">
                             California Clean Energy Grant
                           </h4>
-                          <span className="flex-shrink-0 px-3.5 py-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white text-xs font-bold rounded-full shadow-[0_1px_2px_rgba(245,158,11,0.30),0_4px_8px_rgba(245,158,11,0.25),0_8px_16px_rgba(245,158,11,0.15)]">
+                          <span className="flex-shrink-0 px-2 py-1 sm:px-3.5 sm:py-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white text-[10px] sm:text-xs font-bold rounded-full shadow-[0_1px_2px_rgba(245,158,11,0.30),0_4px_8px_rgba(245,158,11,0.25),0_8px_16px_rgba(245,158,11,0.15)]">
                             $150K
                           </span>
                         </div>
-                        <p className="font-body text-[13px] text-muted-foreground leading-[1.6]">
+                        <p className="font-body text-[11px] sm:text-xs lg:text-[13px] text-muted-foreground leading-[1.6]">
                           State • 88% match • Deadline: Jan 30
                         </p>
                       </div>

@@ -136,10 +136,10 @@ export const StorySection = ({
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
             Meet Your Funding Crew
           </h2>
-          <p className="font-body text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
             The folks who'll help you raise your barn
           </p>
         </div>

@@ -158,10 +158,10 @@ export const ServicesSection = ({
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
             Ready to Raise Your Funding Barn?
           </h2>
-          <p className="font-body text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
             Think barn-raising, but for your startup. We help you claim millions in grants, keep 100% of your equity, and actually have fun doing it.
           </p>
         </div>
@@ -174,34 +174,34 @@ export const ServicesSection = ({
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
             <div className="relative">
-              <h3 className="font-display text-2xl font-bold text-foreground mb-6">
+              <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-4 sm:mb-6">
                 What We Bring to the Barn-Raising
               </h3>
 
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 <div>
-                  <h4 className="font-body text-base font-semibold text-foreground mb-2">
+                  <h4 className="font-body text-sm sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">
                     Your Custom Funding Blueprint
                   </h4>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     A tailored roadmap showing exactly which grants fit your stage, industry, and vision — no guesswork.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-body text-base font-semibold text-foreground mb-2">
+                  <h4 className="font-body text-sm sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">
                     Full-Service Grant Writing
                   </h4>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     We handle the research, writing, compliance, and submission. You focus on building your company.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-body text-base font-semibold text-foreground mb-2">
+                  <h4 className="font-body text-sm sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">
                     End-to-End Support
                   </h4>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     We continuously track new opportunities across federal, state, and private sources, then handle impact reporting and documentation to keep you eligible for future funding rounds.
                   </p>
                 </div>
@@ -215,44 +215,44 @@ export const ServicesSection = ({
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
             <div className="relative">
-              <h3 className="font-display text-2xl font-bold text-foreground mb-6">
+              <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-4 sm:mb-6">
                 Let's Get Your Barn Raised
               </h3>
 
-              <p className="font-body text-base text-muted-foreground mb-6">
+              <p className="font-body text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
                 Jump on a discovery call and we'll map out:
               </p>
 
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                    <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     Which grants you qualify for right now (spoiler: probably more than you think)
                   </p>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                    <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     How to weave grants into your capital stack without the headaches
                   </p>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                    <svg className="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                  <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     The fastest route to your first (or next) funded project
                   </p>
                 </div>
