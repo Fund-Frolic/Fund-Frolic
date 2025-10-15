@@ -106,7 +106,7 @@ export const DisabledState: Story = {
 
 // Story 5: Newsletter Signup
 export const NewsletterSignup: Story = {
-  render: () => {
+  args: { label: 'Label' },  render: () => {
     const [subscribed, setSubscribed] = useState(false);
 
     return (
@@ -142,7 +142,7 @@ export const NewsletterSignup: Story = {
 
 // Story 6: Terms Acceptance
 export const TermsAcceptance: Story = {
-  render: () => {
+  args: { label: 'Label' },  render: () => {
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [marketingAccepted, setMarketingAccepted] = useState(false);
 
@@ -197,7 +197,7 @@ export const TermsAcceptance: Story = {
 
 // Story 7: Contact Form Opt-ins
 export const ContactFormOptins: Story = {
-  render: () => {
+  args: { label: 'Label' },  render: () => {
     const [newsletter, setNewsletter] = useState(true);
     const [updates, setUpdates] = useState(false);
 
@@ -236,7 +236,7 @@ export const ContactFormOptins: Story = {
 
 // Story 8: Settings Panel
 export const SettingsPanel: Story = {
-  render: () => {
+  args: { label: 'Label' },  render: () => {
     const [emailNotifications, setEmailNotifications] = useState(true);
     const [pushNotifications, setPushNotifications] = useState(false);
     const [darkMode, setDarkMode] = useState(false);
@@ -320,7 +320,7 @@ export const SettingsPanel: Story = {
 
 // Story 9: Multi-line Label
 export const MultilineLabel: Story = {
-  render: () => (
+  args: { label: 'Label' },  render: () => (
     <div className="w-full max-w-md p-8 bg-white">
       <CheckboxField
         label="I agree to the Terms of Service, Privacy Policy, and Cookie Policy, and understand that my data will be processed according to these agreements"
@@ -339,7 +339,7 @@ export const MultilineLabel: Story = {
 
 // Story 10: Multiple Checkboxes Stacked
 export const MultipleStacked: Story = {
-  render: () => {
+  args: { label: 'Label' },  render: () => {
     const [interests, setInterests] = useState({
       design: true,
       development: true,
@@ -399,7 +399,7 @@ export const MultipleStacked: Story = {
 
 // Story 11: Without Description
 export const WithoutDescription: Story = {
-  render: () => (
+  args: { label: 'Label' },  render: () => (
     <div className="w-full max-w-md p-8 bg-white">
       <h4 className="text-base font-semibold text-gray-900 mb-4">
         Select Features
@@ -424,7 +424,7 @@ export const WithoutDescription: Story = {
 
 // Story 12: Disabled States
 export const DisabledStates: Story = {
-  render: () => (
+  args: { label: 'Label' },  render: () => (
     <div className="w-full max-w-md p-8 bg-white space-y-4">
       <div>
         <h4 className="text-base font-semibold text-gray-900 mb-3">
@@ -461,7 +461,7 @@ export const DisabledStates: Story = {
 
 // Story 13: Click Area Demo
 export const ClickAreaDemo: Story = {
-  render: () => {
+  args: { label: 'Label' },  render: () => {
     const [clicked, setClicked] = useState(false);
 
     return (
@@ -499,7 +499,7 @@ export const ClickAreaDemo: Story = {
 
 // Story 14: Accessibility Demo
 export const AccessibilityDemo: Story = {
-  render: () => (
+  args: { label: 'Label' },  render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">
         <h4 className="text-base font-semibold text-gray-900 mb-4">Accessibility Features</h4>
