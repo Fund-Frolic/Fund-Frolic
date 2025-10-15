@@ -91,10 +91,10 @@ export const ServicesSection = ({
       )}
       {...props}
     >
-      {/* Scroll-animated clouds - behind content */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      {/* TEMPORARILY DISABLED - Scroll-animated clouds - behind content */}
+      {/* <div className="absolute inset-0 pointer-events-none" aria-hidden="true"> */}
         {/* Cloud 1 */}
-        <svg
+        {/* <svg
           ref={cloud1Ref}
           className="absolute top-[35%] left-[10%] w-[140px] sm:w-[200px] md:w-[280px] lg:w-[360px] xl:w-[400px] h-auto"
           style={{
@@ -111,10 +111,10 @@ export const ServicesSection = ({
             fill="#DBEAFE"
             opacity="0.70"
           />
-        </svg>
+        </svg> */}
 
         {/* Cloud 2 */}
-        <svg
+        {/* <svg
           ref={cloud2Ref}
           className="absolute top-[25%] right-[8%] w-[200px] sm:w-[280px] md:w-[380px] lg:w-[480px] xl:w-[560px] h-auto"
           style={{
@@ -131,10 +131,10 @@ export const ServicesSection = ({
             fill="#BFDBFE"
             opacity="0.65"
           />
-        </svg>
+        </svg> */}
 
         {/* Cloud 3 */}
-        <svg
+        {/* <svg
           ref={cloud3Ref}
           className="absolute top-[55%] left-[15%] w-[110px] sm:w-[160px] md:w-[220px] lg:w-[280px] xl:w-[320px] h-auto"
           style={{
@@ -151,8 +151,8 @@ export const ServicesSection = ({
             fill="#FDE68A"
             opacity="0.75"
           />
-        </svg>
-      </div>
+        </svg> */}
+      {/* </div> */}
 
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}

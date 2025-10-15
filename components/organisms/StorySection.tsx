@@ -83,8 +83,8 @@ export const StorySection = ({
       )}
       {...props}
     >
-      {/* Rising Sun - bottom-left to top-right */}
-      <div
+      {/* TEMPORARILY DISABLED - Rising Sun - bottom-left to top-right */}
+      {/* <div
         ref={sunRef}
         className="absolute bottom-0 left-0 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px] lg:w-[480px] lg:h-[480px] xl:w-[600px] xl:h-[600px] pointer-events-none"
         style={{
@@ -95,14 +95,12 @@ export const StorySection = ({
       >
         <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            {/* Subtle radial gradient for sun orb */}
             <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#FEF3C7" stopOpacity="0.95" />
               <stop offset="70%" stopColor="#FCD34D" stopOpacity="0.9" />
               <stop offset="100%" stopColor="#FCD34D" stopOpacity="0.85" />
             </radialGradient>
 
-            {/* Glow filter for rays */}
             <filter id="rayGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
               <feMerge>
@@ -112,12 +110,9 @@ export const StorySection = ({
             </filter>
           </defs>
 
-          {/* Main sun orb with subtle gradient */}
           <circle cx="100" cy="100" r="42" fill="url(#sunGradient)" />
 
-          {/* Simplified sun rays - 8 primary */}
           <g stroke="#FCD34D" strokeWidth="3.5" strokeLinecap="round" opacity="0.55" filter="url(#rayGlow)">
-            {/* 8 rays around the sun */}
             <line x1="100" y1="25" x2="100" y2="48" />
             <line x1="100" y1="152" x2="100" y2="175" />
             <line x1="25" y1="100" x2="48" y2="100" />
@@ -128,10 +123,9 @@ export const StorySection = ({
             <line x1="146" y1="54" x2="162" y2="38" />
           </g>
 
-          {/* Inner highlight for subtle depth */}
           <circle cx="95" cy="92" r="10" fill="#FEF3C7" opacity="0.3" />
         </svg>
-      </div>
+      </div> */}
 
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}

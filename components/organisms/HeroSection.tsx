@@ -88,10 +88,10 @@ export const HeroSection = ({
       )}
       {...props}
     >
-      {/* Rolling hills at bottom of hero section */}
-      <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+      {/* TEMPORARILY DISABLED - Rolling hills at bottom of hero section */}
+      {/* <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true"> */}
         {/* RollingHillOne - slides left */}
-        <svg
+        {/* <svg
           ref={hill1Ref}
           className="absolute bottom-0 left-0 w-full h-[600px] sm:h-[800px] md:h-[900px] lg:h-[1000px] xl:h-[1200px]"
           viewBox="0 0 1440 600"
@@ -103,10 +103,10 @@ export const HeroSection = ({
             d="M0 260 C200 280, 400 330, 600 400 C800 470, 1000 530, 1200 565 C1300 582, 1370 592, 1440 598 L1440 600 L0 600 Z"
             fill="#FFFBEB"
           />
-        </svg>
+        </svg> */}
 
         {/* RollingHillTwo - slides right */}
-        <svg
+        {/* <svg
           ref={hill2Ref}
           className="absolute bottom-0 left-0 w-full h-[500px] sm:h-[650px] md:h-[750px] lg:h-[850px] xl:h-[1000px]"
           style={{
@@ -121,8 +121,8 @@ export const HeroSection = ({
             d="M1440 296 C1240 316, 1040 366, 840 436 C640 506, 440 566, 240 594 C140 608, 70 598, 0 598 L0 600 L1440 600 Z"
             fill="#FEF3C7"
           />
-        </svg>
-      </div>
+        </svg> */}
+      {/* </div> */}
       <div className="relative max-w-7xl mx-auto w-full z-10 -mt-12 md:-mt-16 lg:-mt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
           {/* Left side - Marketing copy */}
