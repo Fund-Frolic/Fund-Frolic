@@ -74,9 +74,16 @@ export const HeroSection = ({
   const [errors, setErrors] = useState<{email?: string}>({});
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const isInitialMount = useRef(true);
 
-  // Auto-scroll to bottom when messages change
+  // Auto-scroll to bottom when messages change (skip initial render)
   useEffect(() => {
+    // Skip auto-scroll on initial mount
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     if (chatContainerRef.current) {
       // Scroll within the chat container only, not the whole page
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
