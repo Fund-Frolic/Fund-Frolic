@@ -166,19 +166,19 @@ export const ServicesSection = ({
           </p>
         </div>
 
-        {/* Two Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          {/* Block 1: What We Deliver */}
-          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
+        {/* Single Combined Section */}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-6 sm:p-8 lg:p-10 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
             {/* Subtle texture overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
             <div className="relative">
+              {/* What We Bring Section */}
               <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-4 sm:mb-6">
                 What We Bring to the Barn-Raising
               </h3>
 
-              <div className="space-y-4 sm:space-y-5">
+              <div className="space-y-4 sm:space-y-5 mb-8 sm:mb-10 lg:mb-12">
                 <div>
                   <h4 className="font-body text-sm sm:text-base font-semibold text-foreground mb-1.5 sm:mb-2">
                     Your Custom Funding Blueprint
@@ -206,15 +206,11 @@ export const ServicesSection = ({
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Block 2: Let's Build Your Engine */}
-          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
-            {/* Subtle texture overlay */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
+              {/* Divider */}
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-8 sm:mb-10 lg:mb-12" />
 
-            <div className="relative">
+              {/* Let's Get Started Section */}
               <h3 className="font-display text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-4 sm:mb-6">
                 Let's Get Your Barn Raised
               </h3>
