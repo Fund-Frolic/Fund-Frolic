@@ -87,6 +87,7 @@ export const DeepNavigation: Story = {
 
 // Story 4: Case Study Page
 export const CaseStudyPage: Story = {
+  args: { items: [] },
   render: () => (
     <div className="max-w-4xl p-8 bg-white">
       <Breadcrumb
@@ -119,6 +120,7 @@ export const CaseStudyPage: Story = {
 
 // Story 5: Blog Post
 export const BlogPost: Story = {
+  args: { items: [] },
   render: () => (
     <div className="max-w-3xl p-8 bg-white">
       <Breadcrumb
@@ -155,6 +157,7 @@ export const BlogPost: Story = {
 
 // Story 6: Product Category
 export const ProductCategory: Story = {
+  args: { items: [] },
   render: () => (
     <div className="max-w-6xl p-8 bg-gray-50">
       <div className="bg-white p-6 rounded-md border border-gray-200">
@@ -196,6 +199,7 @@ export const ProductCategory: Story = {
 
 // Story 7: Documentation Page
 export const DocumentationPage: Story = {
+  args: { items: [] },
   render: () => (
     <div className="flex gap-8 max-w-7xl p-8">
       {/* Sidebar */}
@@ -241,6 +245,7 @@ export const DocumentationPage: Story = {
 
 // Story 8: Mobile Responsive
 export const MobileResponsive: Story = {
+  args: { items: [] },
   render: () => (
     <div className="max-w-sm p-4 bg-white border border-gray-200 rounded-md">
       <Breadcrumb
@@ -273,6 +278,7 @@ export const MobileResponsive: Story = {
 
 // Story 9: With Custom Styling
 export const WithCustomStyling: Story = {
+  args: { items: [] },
   render: () => (
     <div className="bg-blue-900 p-8 rounded-md">
       <Breadcrumb
@@ -305,6 +311,7 @@ export const WithCustomStyling: Story = {
 
 // Story 10: Hover States Demo
 export const HoverStates: Story = {
+  args: { items: [] },
   render: () => (
     <div className="bg-gray-100 p-8 rounded-md">
       <p className="text-sm text-gray-700 mb-4">
@@ -340,6 +347,7 @@ export const HoverStates: Story = {
 
 // Story 11: Accessibility Demo
 export const AccessibilityDemo: Story = {
+  args: { items: [] },
   render: () => (
     <div className="max-w-2xl p-8 space-y-8">
       <div className="bg-gray-100 p-6 rounded-md">
