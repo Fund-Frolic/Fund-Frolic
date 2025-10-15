@@ -335,6 +335,29 @@ body {
   display: none;  /* Chrome, Safari and Opera */
 }
 
+/* Thin scrollbar for vertical scroll sections */
+.scrollbar-thin {
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: rgba(37, 99, 235, 0.2) transparent;  /* thumb and track color for Firefox */
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;  /* Chrome, Safari and Opera */
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(37, 99, 235, 0.2);
+  border-radius: 20px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(37, 99, 235, 0.3);
+}
+
 /* ============================================================================
    Custom Animations
    ============================================================================ */

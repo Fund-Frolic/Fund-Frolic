@@ -77,8 +77,9 @@ export const HeroSection = ({
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      // Scroll within the chat container only, not the whole page
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages, isLoading]);
 
@@ -161,6 +162,9 @@ export const HeroSection = ({
         {businessText && <p className="text-xs opacity-80">{businessText}</p>}
       </div>
     ));
+
+    // Move to step 4 (complete) - hide form inputs
+    setStep(4);
 
     // Show loading
     setIsLoading(true);
@@ -377,25 +381,33 @@ export const HeroSection = ({
                 )}
 
                 {step === 3 && (
-                  <form onSubmit={handleStep3Submit} className="space-y-4">
-                    <div className="max-h-[180px] overflow-y-auto space-y-2 px-2 py-1">
-                      {CERTIFICATIONS.map((cert) => (
-                        <label
-                          key={cert}
-                          className="flex items-center gap-3 px-4 py-3 bg-background/60 hover:bg-background/90 rounded-[14px] cursor-pointer transition-all duration-200 group"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={formData.certifications.includes(cert)}
-                            onChange={() => toggleCertification(cert)}
-                            className="w-4 h-4 rounded border-2 border-primary/30 text-primary focus:ring-2 focus:ring-primary/40 cursor-pointer"
-                          />
-                          <span className="font-body text-sm text-foreground group-hover:text-primary transition-colors">
-                            {cert}
-                          </span>
-                        </label>
-                      ))}
+                  <form onSubmit={handleStep3Submit} className="space-y-3">
+                    {/* Certifications with header */}
+                    <div className="bg-background/90 backdrop-blur-sm rounded-[18px] p-5 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)]">
+                      <p className="font-body text-sm font-medium text-muted-foreground mb-3">
+                        Select all that apply:
+                      </p>
+                      <div className="max-h-[150px] overflow-y-auto space-y-1.5 pr-2 scrollbar-thin">
+                        {CERTIFICATIONS.map((cert) => (
+                          <label
+                            key={cert}
+                            className="flex items-center gap-2.5 px-3 py-2.5 bg-background/40 hover:bg-primary/5 rounded-[12px] cursor-pointer transition-all duration-150 group"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={formData.certifications.includes(cert)}
+                              onChange={() => toggleCertification(cert)}
+                              className="w-4 h-4 rounded border-2 border-primary/30 text-primary focus:ring-2 focus:ring-primary/40 cursor-pointer transition-all"
+                            />
+                            <span className="font-body text-sm text-foreground group-hover:text-primary transition-colors flex-1">
+                              {cert}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
                     </div>
+
+                    {/* Business name input */}
                     <input
                       type="text"
                       value={formData.businessName}
@@ -403,6 +415,8 @@ export const HeroSection = ({
                       placeholder="Business name (optional)"
                       className="w-full px-6 py-4 bg-background/90 backdrop-blur-sm rounded-[18px] font-body text-[15px] text-foreground placeholder:text-muted-foreground/70 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all duration-300"
                     />
+
+                    {/* Submit button */}
                     <button
                       type="submit"
                       disabled={isLoading}
