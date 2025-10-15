@@ -19,12 +19,15 @@ export const StorySection = ({
   className,
   ...props
 }: StorySectionProps) => {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const sunRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
+    let ticking = false;
+
+    const updateSun = () => {
+      if (!sectionRef.current || !sunRef.current) return;
 
       const section = sectionRef.current;
       const sectionTop = section.offsetTop;
@@ -32,13 +35,20 @@ export const StorySection = ({
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Calculate how far we've scrolled into the section
       const scrolledIntoSection = scrollY + windowHeight - sectionTop;
-
-      // Progress from 0 to 1 as section comes into view
       const progress = Math.max(0, Math.min(1, scrolledIntoSection / sectionHeight));
 
-      setScrollProgress(progress);
+      // Directly update DOM
+      sunRef.current.style.transform = `translate(calc(${progress * 85}vw - ${progress * 600}px), calc(-${progress * 100}vh + ${progress * 600}px))`;
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        rafRef.current = requestAnimationFrame(updateSun);
+        ticking = true;
+      }
     };
 
     handleScroll();
@@ -46,6 +56,9 @@ export const StorySection = ({
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
@@ -61,10 +74,9 @@ export const StorySection = ({
     >
       {/* Rising Sun - bottom-left to top-right */}
       <div
+        ref={sunRef}
         className="absolute bottom-0 left-0 w-[600px] h-[600px] pointer-events-none"
         style={{
-          transform: `translate(calc(${scrollProgress * 85}vw - ${scrollProgress * 600}px), calc(-${scrollProgress * 100}vh + ${scrollProgress * 600}px))`,
-          willChange: 'transform',
           filter: 'drop-shadow(0 4px 12px rgba(252, 211, 77, 0.2)) drop-shadow(0 8px 24px rgba(252, 211, 77, 0.15))'
         }}
         aria-hidden="true"

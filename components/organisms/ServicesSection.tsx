@@ -20,12 +20,17 @@ export const ServicesSection = ({
   className,
   ...props
 }: ServicesSectionProps) => {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const cloud1Ref = useRef<SVGSVGElement>(null);
+  const cloud2Ref = useRef<SVGSVGElement>(null);
+  const cloud3Ref = useRef<SVGSVGElement>(null);
+  const rafRef = useRef<number>();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
+    let ticking = false;
+
+    const updateClouds = () => {
+      if (!sectionRef.current || !cloud1Ref.current || !cloud2Ref.current || !cloud3Ref.current) return;
 
       const section = sectionRef.current;
       const sectionTop = section.offsetTop;
@@ -33,13 +38,26 @@ export const ServicesSection = ({
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
-      // Calculate how far we've scrolled into the section
       const scrolledIntoSection = scrollY + windowHeight - sectionTop;
-
-      // Clouds slide in (0 to 1 over first 60% of section) and stay
       const progress = Math.max(0, Math.min(1, scrolledIntoSection / (sectionHeight * 0.6)));
 
-      setScrollProgress(progress);
+      // Directly update DOM
+      const opacity = Math.min(1, progress * 1.5).toString();
+      cloud1Ref.current.style.left = `${-600 + progress * 1000}px`;
+      cloud1Ref.current.style.opacity = opacity;
+      cloud2Ref.current.style.right = `${-800 + progress * 1200}px`;
+      cloud2Ref.current.style.opacity = opacity;
+      cloud3Ref.current.style.left = `${-500 + progress * 900}px`;
+      cloud3Ref.current.style.opacity = opacity;
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        rafRef.current = requestAnimationFrame(updateClouds);
+        ticking = true;
+      }
     };
 
     handleScroll();
@@ -47,6 +65,9 @@ export const ServicesSection = ({
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
@@ -64,11 +85,9 @@ export const ServicesSection = ({
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {/* Cloud 1 - Coming from left */}
         <svg
+          ref={cloud1Ref}
           className="absolute top-[15%] w-[400px] h-[220px]"
           style={{
-            left: `${-600 + scrollProgress * 1000}px`,
-            opacity: Math.min(1, scrollProgress * 1.5),
-            willChange: 'left, opacity',
             filter: 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.15)) drop-shadow(0 8px 16px rgba(59, 130, 246, 0.1))'
           }}
           viewBox="0 0 739.57 406.11"
@@ -85,11 +104,9 @@ export const ServicesSection = ({
 
         {/* Cloud 2 - Coming from right */}
         <svg
+          ref={cloud2Ref}
           className="absolute top-[8%] w-[560px] h-[290px]"
           style={{
-            right: `${-800 + scrollProgress * 1200}px`,
-            opacity: Math.min(1, scrollProgress * 1.5),
-            willChange: 'right, opacity',
             filter: 'drop-shadow(0 6px 12px rgba(59, 130, 246, 0.18)) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12))'
           }}
           viewBox="0 0 803.62 418.38"
@@ -106,11 +123,9 @@ export const ServicesSection = ({
 
         {/* Cloud 3 - Coming from left, lower */}
         <svg
+          ref={cloud3Ref}
           className="absolute top-[60%] w-[320px] h-[168px]"
           style={{
-            left: `${-500 + scrollProgress * 900}px`,
-            opacity: Math.min(1, scrollProgress * 1.5),
-            willChange: 'left, opacity',
             filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.2)) drop-shadow(0 8px 16px rgba(251, 191, 36, 0.12))'
           }}
           viewBox="0 0 771.72 406.13"

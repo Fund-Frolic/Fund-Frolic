@@ -24,23 +24,38 @@ export const HeroSection = ({
   className,
   ...props
 }: HeroSectionProps) => {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const hill1Ref = useRef<SVGSVGElement>(null);
+  const hill2Ref = useRef<SVGSVGElement>(null);
+  const rafRef = useRef<number>();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
+    let ticking = false;
 
-      const section = sectionRef.current;
-      const sectionHeight = section.offsetHeight;
+    const updateHills = () => {
+      if (!sectionRef.current || !hill1Ref.current || !hill2Ref.current) return;
+
+      const sectionHeight = sectionRef.current.offsetHeight;
       const scrollY = window.scrollY;
 
       // Progress from 0 to 1 as we scroll from top to halfway through section 1
-      // At scrollY = 0: progress = 0 (hills fully visible)
-      // At scrollY = sectionHeight / 2: progress = 1 (hills fully slid out)
       const progress = Math.max(0, Math.min(1, scrollY / (sectionHeight / 2)));
 
-      setScrollProgress(progress);
+      // Directly update DOM - no React re-render
+      const opacity = (1 - progress).toString();
+      hill1Ref.current.style.transform = `translate3d(${-progress * 100}%, 0, 0)`;
+      hill1Ref.current.style.opacity = opacity;
+      hill2Ref.current.style.transform = `translate3d(${progress * 100}%, 0, 0)`;
+      hill2Ref.current.style.opacity = opacity;
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        rafRef.current = requestAnimationFrame(updateHills);
+        ticking = true;
+      }
     };
 
     handleScroll();
@@ -48,6 +63,9 @@ export const HeroSection = ({
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
@@ -65,12 +83,8 @@ export const HeroSection = ({
       <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
         {/* RollingHillOne - slides left */}
         <svg
+          ref={hill1Ref}
           className="absolute bottom-0 left-0 w-full h-[1600px]"
-          style={{
-            transform: `translate3d(${-scrollProgress * 100}%, 0, 0)`,
-            opacity: 1 - scrollProgress,
-            willChange: 'transform, opacity'
-          }}
           viewBox="0 0 1440 600"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -84,11 +98,9 @@ export const HeroSection = ({
 
         {/* RollingHillTwo - slides right */}
         <svg
+          ref={hill2Ref}
           className="absolute bottom-0 left-0 w-full h-[1300px]"
           style={{
-            transform: `translate3d(${scrollProgress * 100}%, 0, 0)`,
-            opacity: 1 - scrollProgress,
-            willChange: 'transform, opacity',
             filter: 'drop-shadow(0 -4px 12px rgba(251, 191, 36, 0.3)) drop-shadow(0 -8px 24px rgba(251, 191, 36, 0.2))'
           }}
           viewBox="0 0 1440 600"
