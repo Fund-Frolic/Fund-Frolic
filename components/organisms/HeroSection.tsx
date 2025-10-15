@@ -40,7 +40,6 @@ export const HeroSection = ({
       // At scrollY = sectionHeight / 2: progress = 1 (hills fully slid out)
       const progress = Math.max(0, Math.min(1, scrollY / (sectionHeight / 2)));
 
-      console.log('Scroll Progress:', progress, 'ScrollY:', scrollY, 'Section Height:', sectionHeight);
       setScrollProgress(progress);
     };
 
@@ -66,11 +65,11 @@ export const HeroSection = ({
       <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
         {/* RollingHillOne - slides left */}
         <svg
-          className="absolute bottom-0 left-0 w-full h-[1600px] transition-all duration-300 ease-out"
+          className="absolute bottom-0 left-0 w-full h-[1600px]"
           style={{
-            transform: `translateX(${-scrollProgress * 100}%)`,
+            transform: `translate3d(${-scrollProgress * 100}%, 0, 0)`,
             opacity: 1 - scrollProgress,
-            filter: 'drop-shadow(0 -2px 6px rgba(251, 191, 36, 0.15))'
+            willChange: 'transform, opacity'
           }}
           viewBox="0 0 1440 600"
           fill="none"
@@ -85,10 +84,11 @@ export const HeroSection = ({
 
         {/* RollingHillTwo - slides right */}
         <svg
-          className="absolute bottom-0 left-0 w-full h-[1300px] transition-all duration-300 ease-out"
+          className="absolute bottom-0 left-0 w-full h-[1300px]"
           style={{
-            transform: `translateX(${scrollProgress * 100}%)`,
+            transform: `translate3d(${scrollProgress * 100}%, 0, 0)`,
             opacity: 1 - scrollProgress,
+            willChange: 'transform, opacity',
             filter: 'drop-shadow(0 -4px 12px rgba(251, 191, 36, 0.3)) drop-shadow(0 -8px 24px rgba(251, 191, 36, 0.2))'
           }}
           viewBox="0 0 1440 600"

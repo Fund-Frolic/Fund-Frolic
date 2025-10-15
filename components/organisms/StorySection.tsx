@@ -61,9 +61,10 @@ export const StorySection = ({
     >
       {/* Rising Sun - bottom-left to top-right */}
       <div
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] pointer-events-none transition-transform duration-500 ease-out"
+        className="absolute bottom-0 left-0 w-[600px] h-[600px] pointer-events-none"
         style={{
           transform: `translate(calc(${scrollProgress * 85}vw - ${scrollProgress * 600}px), calc(-${scrollProgress * 100}vh + ${scrollProgress * 600}px))`,
+          willChange: 'transform',
           filter: 'drop-shadow(0 4px 12px rgba(252, 211, 77, 0.2)) drop-shadow(0 8px 24px rgba(252, 211, 77, 0.15))'
         }}
         aria-hidden="true"

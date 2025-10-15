@@ -64,10 +64,11 @@ export const ServicesSection = ({
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {/* Cloud 1 - Coming from left */}
         <svg
-          className="absolute top-[15%] w-[400px] h-[220px] transition-transform duration-300 ease-out"
+          className="absolute top-[15%] w-[400px] h-[220px]"
           style={{
             left: `${-600 + scrollProgress * 1000}px`,
             opacity: Math.min(1, scrollProgress * 1.5),
+            willChange: 'left, opacity',
             filter: 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.15)) drop-shadow(0 8px 16px rgba(59, 130, 246, 0.1))'
           }}
           viewBox="0 0 739.57 406.11"
@@ -84,10 +85,11 @@ export const ServicesSection = ({
 
         {/* Cloud 2 - Coming from right */}
         <svg
-          className="absolute top-[8%] w-[560px] h-[290px] transition-transform duration-300 ease-out"
+          className="absolute top-[8%] w-[560px] h-[290px]"
           style={{
             right: `${-800 + scrollProgress * 1200}px`,
             opacity: Math.min(1, scrollProgress * 1.5),
+            willChange: 'right, opacity',
             filter: 'drop-shadow(0 6px 12px rgba(59, 130, 246, 0.18)) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12))'
           }}
           viewBox="0 0 803.62 418.38"
@@ -104,10 +106,11 @@ export const ServicesSection = ({
 
         {/* Cloud 3 - Coming from left, lower */}
         <svg
-          className="absolute top-[60%] w-[320px] h-[168px] transition-transform duration-300 ease-out"
+          className="absolute top-[60%] w-[320px] h-[168px]"
           style={{
             left: `${-500 + scrollProgress * 900}px`,
             opacity: Math.min(1, scrollProgress * 1.5),
+            willChange: 'left, opacity',
             filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.2)) drop-shadow(0 8px 16px rgba(251, 191, 36, 0.12))'
           }}
           viewBox="0 0 771.72 406.13"
