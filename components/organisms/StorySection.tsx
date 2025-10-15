@@ -78,7 +78,7 @@ export const StorySection = ({
       id="story"
       ref={sectionRef}
       className={cn(
-        "relative w-full min-h-screen flex items-center px-6 md:px-12 bg-background overflow-hidden",
+        "relative w-full min-h-[600px] sm:min-h-[700px] lg:min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12 bg-background overflow-hidden",
         className
       )}
       {...props}
@@ -86,10 +86,10 @@ export const StorySection = ({
       {/* Rising Sun - bottom-left to top-right */}
       <div
         ref={sunRef}
-        className="absolute bottom-0 left-0 w-[600px] h-[600px] pointer-events-none"
+        className="absolute bottom-0 left-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] pointer-events-none"
         style={{
           filter: 'drop-shadow(0 4px 12px rgba(252, 211, 77, 0.2)) drop-shadow(0 8px 24px rgba(252, 211, 77, 0.15))',
-          transform: 'translate(calc(85vw - 600px), calc(-100vh + 600px))'
+          transform: 'translate(calc(85vw - 300px), calc(-100vh + 300px))'
         }}
         aria-hidden="true"
       >
@@ -135,17 +135,17 @@ export const StorySection = ({
 
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Meet Your Funding Crew
           </h2>
-          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             The folks who'll help you raise your barn
           </p>
         </div>
 
         {/* Team Members Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 max-w-5xl mx-auto">
           {/* Team Member 1 */}
           <div className="flex flex-col items-center text-center">
             <Avatar
@@ -154,15 +154,15 @@ export const StorySection = ({
               fallback="GB"
               size="2xl"
               ring
-              className="mb-6"
+              className="mb-4 sm:mb-6 !w-20 !h-20 sm:!w-24 sm:!h-24"
             />
-            <h3 className="font-display text-2xl font-bold text-foreground mb-2">
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-2">
               Guenevere Blanchard
             </h3>
-            <p className="font-body text-base text-primary font-medium mb-4">
+            <p className="font-body text-sm sm:text-base text-primary font-medium mb-3 sm:mb-4">
               Co-Founder & Grant Strategist
             </p>
-            <p className="font-body text-base text-muted-foreground leading-relaxed max-w-md">
+            <p className="font-body text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md px-4 sm:px-0">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
@@ -175,15 +175,15 @@ export const StorySection = ({
               fallback="LB"
               size="2xl"
               ring
-              className="mb-6"
+              className="mb-4 sm:mb-6 !w-20 !h-20 sm:!w-24 sm:!h-24"
             />
-            <h3 className="font-display text-2xl font-bold text-foreground mb-2">
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-2">
               Logan Bell
             </h3>
-            <p className="font-body text-base text-primary font-medium mb-4">
+            <p className="font-body text-sm sm:text-base text-primary font-medium mb-3 sm:mb-4">
               Developer
             </p>
-            <p className="font-body text-base text-muted-foreground leading-relaxed max-w-md">
+            <p className="font-body text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md px-4 sm:px-0">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>

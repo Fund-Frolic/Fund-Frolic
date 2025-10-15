@@ -87,7 +87,7 @@ export const ServicesSection = ({
       id="services"
       ref={sectionRef}
       className={cn(
-        "relative w-full min-h-screen flex items-center px-6 md:px-12 bg-gradient-to-br from-blue-50 via-background to-gold-50 overflow-hidden",
+        "relative w-full min-h-[600px] sm:min-h-[700px] lg:min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12 bg-gradient-to-br from-blue-50 via-background to-gold-50 overflow-hidden",
         className
       )}
       {...props}
@@ -97,7 +97,7 @@ export const ServicesSection = ({
         {/* Cloud 1 */}
         <svg
           ref={cloud1Ref}
-          className="absolute top-[35%] left-[10%] w-[400px] h-[220px]"
+          className="absolute top-[35%] left-[10%] w-[200px] sm:w-[300px] lg:w-[400px] h-auto"
           style={{
             filter: 'drop-shadow(0 4px 8px rgba(59, 130, 246, 0.15)) drop-shadow(0 8px 16px rgba(59, 130, 246, 0.1))',
             opacity: 1
@@ -117,7 +117,7 @@ export const ServicesSection = ({
         {/* Cloud 2 */}
         <svg
           ref={cloud2Ref}
-          className="absolute top-[25%] right-[8%] w-[560px] h-[290px]"
+          className="absolute top-[25%] right-[8%] w-[280px] sm:w-[420px] lg:w-[560px] h-auto"
           style={{
             filter: 'drop-shadow(0 6px 12px rgba(59, 130, 246, 0.18)) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.12))',
             opacity: 1
@@ -137,7 +137,7 @@ export const ServicesSection = ({
         {/* Cloud 3 */}
         <svg
           ref={cloud3Ref}
-          className="absolute top-[55%] left-[15%] w-[320px] h-[168px]"
+          className="absolute top-[55%] left-[15%] w-[160px] sm:w-[240px] lg:w-[320px] h-auto"
           style={{
             filter: 'drop-shadow(0 4px 8px rgba(251, 191, 36, 0.2)) drop-shadow(0 8px 16px rgba(251, 191, 36, 0.12))',
             opacity: 1
@@ -157,19 +157,19 @@ export const ServicesSection = ({
 
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Ready to Raise Your Funding Barn?
           </h2>
-          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             Think barn-raising, but for your startup. We help you claim millions in grants, keep 100% of your equity, and actually have fun doing it.
           </p>
         </div>
 
         {/* Three Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Block 1: What We Deliver */}
-          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-[24px] p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
+          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
             {/* Subtle texture overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
@@ -219,7 +219,7 @@ export const ServicesSection = ({
           </div>
 
           {/* Block 2: Built for Founders */}
-          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-[24px] p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
+          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
             {/* Subtle texture overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
@@ -235,7 +235,7 @@ export const ServicesSection = ({
           </div>
 
           {/* Block 3: Let's Build Your Engine */}
-          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-[24px] p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
+          <div className="relative bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08)] backdrop-blur-md overflow-hidden">
             {/* Subtle texture overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
