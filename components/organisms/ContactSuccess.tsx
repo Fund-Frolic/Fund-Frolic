@@ -10,7 +10,7 @@
 import { cn } from '@/lib/utils';
 import { GrantResult } from '@/types/grants';
 
-export interface ContactSuccessProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ContactSuccessProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'results'> {
   /**
    * Grant results to display grant names in confirmation
    */

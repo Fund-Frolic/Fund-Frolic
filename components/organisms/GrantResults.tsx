@@ -13,7 +13,7 @@ import { GrantCard } from '@/components/molecules/GrantCard';
 import { Badge } from '@/components/atoms/Badge';
 import { useState } from 'react';
 
-export interface GrantResultsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GrantResultsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'results'> {
   /**
    * Grant results from API
    */
