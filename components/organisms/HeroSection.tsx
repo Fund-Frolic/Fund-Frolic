@@ -2,8 +2,8 @@
  * HeroSection Component
  *
  * Landing page hero section with headline, value proposition, and key features.
- * Left side displays marketing copy, right side features AI Grant Finder chat interface.
- * The chat interface is a progressive disclosure form that feels like an AI conversation.
+ * Left side displays marketing copy, right side features AI Grant Finder form.
+ * Simple form with validation that maintains chat-like aesthetic.
  * Design system colors: primary (blue), accent (gold), semantic tokens.
  * Spacing: 8-point grid aligned.
  */
@@ -12,7 +12,13 @@
 
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/atoms/Badge';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { GrantLoadingState } from '@/components/organisms/GrantLoadingState';
+import { GrantResults } from '@/components/organisms/GrantResults';
+import { ContactForm } from '@/components/organisms/ContactForm';
+import { ContactSuccess } from '@/components/organisms/ContactSuccess';
+import { useViewState } from '@/lib/contexts/ViewStateContext';
+import { useFormHighlight } from '@/lib/contexts/FormHighlightContext';
 
 export interface HeroSectionProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -21,204 +27,167 @@ export interface HeroSectionProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
 }
 
-interface Message {
-  id: string;
-  type: 'ai' | 'user';
-  content: string | React.ReactNode;
-  timestamp: string;
-}
-
 interface FormData {
-  idea: string;
-  name: string;
-  email: string;
-  businessName: string;
-  certifications: string[];
+  projectDescription: string;
+  revenueStatus: 'positive' | 'not-positive' | '';
+  organizationType: 'for-profit' | 'non-profit' | '';
 }
 
-const CERTIFICATIONS = [
-  'Minority-Owned',
-  'Veteran-Owned',
-  'Women-Owned',
-  'Disabled-Owned',
-  'LGBTQ+-Owned',
-  'Native American/Tribal-Owned',
-  'HUBZone Certified',
-  '8(a) Certified',
-  'Small Disadvantaged Business',
-  'Rural Business',
-  'Economically Disadvantaged',
-];
+interface FormErrors {
+  projectDescription?: string;
+  revenueStatus?: string;
+  organizationType?: string;
+  submit?: string;
+}
 
 export const HeroSection = ({
   className,
   ...props
 }: HeroSectionProps) => {
-  const [step, setStep] = useState(1);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      type: 'ai',
-      content: "Hi! I'm your AI grant finder. Tell me about your startup or project, and I'll find matching grants for you.",
-      timestamp: 'Just now'
-    }
-  ]);
+  const { viewState, setViewState, grantResults, setGrantResults } = useViewState();
+  const { isHighlighted } = useFormHighlight();
   const [formData, setFormData] = useState<FormData>({
-    idea: '',
-    name: '',
-    email: '',
-    businessName: '',
-    certifications: []
+    projectDescription: '',
+    revenueStatus: '',
+    organizationType: ''
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<{email?: string}>({});
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
-  const isInitialMount = useRef(true);
+  const [errors, setErrors] = useState<FormErrors>({});
 
-  // Auto-scroll to bottom when messages change (skip initial render)
-  useEffect(() => {
-    // Skip auto-scroll on initial mount
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.projectDescription.trim()) {
+      newErrors.projectDescription = 'Please describe your project';
+    } else if (formData.projectDescription.trim().length < 20) {
+      newErrors.projectDescription = 'Please provide more details (at least 20 characters)';
     }
 
-    if (chatContainerRef.current) {
-      // Scroll within the chat container only, not the whole page
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    if (!formData.revenueStatus) {
+      newErrors.revenueStatus = 'Please select your revenue status';
     }
-  }, [messages, isLoading]);
 
-  const addMessage = (type: 'ai' | 'user', content: string | React.ReactNode) => {
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      type,
-      content,
-      timestamp: 'Just now'
-    };
-    setMessages(prev => [...prev, newMessage]);
+    if (!formData.organizationType) {
+      newErrors.organizationType = 'Please select your organization type';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleStep1Submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.idea.trim()) return;
-
-    // Add user message
-    addMessage('user', formData.idea);
-
-    // Show loading
-    setIsLoading(true);
-
-    // Simulate AI processing
-    setTimeout(() => {
-      setIsLoading(false);
-      addMessage('ai', "Got it! What's your name and email so I can send you these opportunities?");
-      setStep(2);
-    }, 1000);
-  };
-
-  const handleStep2Submit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate
-    const newErrors: {email?: string} = {};
-    if (!formData.name.trim()) return;
-    if (!formData.email.trim()) return;
-    if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-      setErrors(newErrors);
-      return;
-    }
+    if (!validateForm()) return;
 
     setErrors({});
-
-    // Add user message
-    addMessage('user', `${formData.name} • ${formData.email}`);
-
-    // Show loading
-    setIsLoading(true);
-
-    // Simulate AI processing
-    setTimeout(() => {
-      setIsLoading(false);
-      addMessage('ai', "Perfect! One more thing - select any certifications that apply to help me find specialized grants. Also, what's your business name? (optional)");
-      setStep(3);
-    }, 1000);
+    // Immediately transition to loading state
+    setViewState('loading');
   };
 
-  const handleStep3Submit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Effect to handle API call when entering loading state
+  useEffect(() => {
+    if (viewState === 'loading' && !grantResults) {
+      const fetchGrants = async () => {
+        try {
+          const response = await fetch('/api/find-grants', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              projectDescription: formData.projectDescription,
+              revenueStatus: formData.revenueStatus,
+              organizationType: formData.organizationType,
+            }),
+          });
 
-    // Add user message showing selections
-    const certText = formData.certifications.length > 0
-      ? formData.certifications.join(', ')
-      : 'No certifications selected';
-    const businessText = formData.businessName.trim()
-      ? `Business: ${formData.businessName}`
-      : '';
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to find grants');
+          }
 
-    addMessage('user', (
-      <div className="space-y-1">
-        <p>{certText}</p>
-        {businessText && <p className="text-xs opacity-80">{businessText}</p>}
-      </div>
-    ));
+          const result = await response.json();
+          setGrantResults(result);
 
-    // Move to step 4 (complete) - hide form inputs
-    setStep(4);
+          // Keep loading state for at least 2 seconds for smooth UX
+          setTimeout(() => {
+            setViewState('results');
+          }, 2000);
 
-    // Show loading
-    setIsLoading(true);
+        } catch (error) {
+          console.error('Error finding grants:', error);
+          setErrors({
+            submit: error instanceof Error ? error.message : 'Failed to find grants. Please try again.'
+          });
+          // Go back to form view on error
+          setViewState('form');
+        }
+      };
 
-    // Simulate AI processing (this is where the real AI call would happen)
-    setTimeout(() => {
-      setIsLoading(false);
-      addMessage('ai', "Awesome! I'm searching for the best grant matches for you. We'll send the results to your email shortly. In the meantime, want to book a discovery call to discuss your funding strategy?");
-      // Here you would actually make the API call with all the form data
-      console.log('Form submitted:', formData);
-    }, 1500);
+      fetchGrants();
+    }
+  }, [viewState, grantResults, formData, setViewState, setGrantResults]);
+
+  const handleRequestHelp = () => {
+    setViewState('contact');
   };
 
-  const toggleCertification = (cert: string) => {
-    setFormData(prev => ({
-      ...prev,
-      certifications: prev.certifications.includes(cert)
-        ? prev.certifications.filter(c => c !== cert)
-        : [...prev.certifications, cert]
-    }));
+  const handleContactSuccess = () => {
+    setViewState('success');
   };
 
-  // Typing indicator component
-  const TypingIndicator = () => (
-    <div className="flex items-start gap-5 animate-in fade-in slide-in-from-left duration-300">
-      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-[12px] flex items-center justify-center">
-        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      </div>
-      <div className="flex-1 max-w-[82%]">
-        <div className="bg-gradient-to-br from-blue-50 via-blue-50/80 to-blue-100/60 rounded-[20px] rounded-tl-sm px-6 py-4 shadow-[0_1px_2px_rgba(37,99,235,0.10),0_4px_12px_-2px_rgba(37,99,235,0.08)]">
-          <div className="flex gap-1.5">
-            <div className="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-2 h-2 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const handleFindMoreGrants = () => {
+    // Reset everything and go back to form
+    setViewState('form');
+    setFormData({
+      projectDescription: '',
+      revenueStatus: '',
+      organizationType: ''
+    });
+    setGrantResults(null);
+    setErrors({});
+  };
+
+  // Show loading state
+  if (viewState === 'loading') {
+    return <GrantLoadingState />;
+  }
+
+  // Show results
+  if (viewState === 'results' && grantResults) {
+    return (
+      <GrantResults
+        results={grantResults}
+        onRequestHelp={handleRequestHelp}
+      />
+    );
+  }
+
+  // Show contact form
+  if (viewState === 'contact' && grantResults) {
+    return (
+      <ContactForm
+        searchId={grantResults.searchId}
+        onSuccess={handleContactSuccess}
+      />
+    );
+  }
+
+  // Show success state
+  if (viewState === 'success' && grantResults) {
+    return (
+      <ContactSuccess
+        results={grantResults}
+        onFindMoreGrants={handleFindMoreGrants}
+      />
+    );
+  }
 
   return (
     <section
       id="home"
       className={cn(
-        "relative w-full min-h-[600px] sm:min-h-[700px] lg:min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12",
+        "relative w-full py-12 sm:py-16 md:py-20 lg:py-24 flex items-center px-4 sm:px-6 md:px-8 lg:px-12",
         className
       )}
       {...props}
@@ -228,212 +197,192 @@ export const HeroSection = ({
           {/* Left side - Marketing copy */}
           <div className="space-y-6 sm:space-y-8">
             {/* Badge */}
-            <Badge variant="warning" size="md" className="font-semibold tracking-wide">
+            <Badge variant="success" size="md" className="font-semibold tracking-wide">
               MEET FUND FROLIC
             </Badge>
 
             {/* Main headline with strategic color */}
             <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight tracking-tight text-foreground">
-              The funding buddy you actually want on your team.
+              The funding <span className="bg-gold-100 text-gold-800 px-2 py-1 rounded-lg">buddy</span> you actually want on your team.
             </h1>
 
             <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              Millions in federal, state, and private grants go unclaimed every year… and a bunch of them could be perfect for your startup. Type your project idea into our{' '}
-              <span className="font-semibold text-primary">AI Grant Finder</span>, and we'll match you with the grants that actually make sense for you. No equity. No shady term sheets. Just funding opportunities that let you scale fast, stay in control, and actually enjoy the ride.
+              Our AI instantly matches you with federal, state, and private grants that actually fit your project. No equity given up. No complicated applications yet. Just 3 perfect matches with direct application links.
             </p>
           </div>
 
-          {/* Right side - AI Chat Interface */}
-          <div className="w-full h-[320px] sm:h-[400px] lg:h-[600px] pt-4 sm:pt-6 lg:pt-8">
+          {/* Right side - Grant Finder Form */}
+          <div className="w-full pt-4 sm:pt-6 lg:pt-8 relative">
+            {/* "Start Here" Indicator - appears when highlighted */}
+            {isHighlighted && (
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 animate-in fade-in slide-in-from-top-2 duration-500">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gold-400/30 blur-xl rounded-full animate-pulse"></div>
+                  <div className="relative bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 text-white px-6 py-2 rounded-full font-body font-bold text-sm shadow-[0_4px_12px_rgba(251,191,36,0.4),0_8px_24px_rgba(251,191,36,0.3)] flex items-center gap-2">
+                    <svg className="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                    </svg>
+                    <span>START HERE</span>
+                    <svg className="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Main container with sophisticated floating elevation */}
-            <div className="relative w-full h-full bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08),0_32px_64px_-12px_rgba(37,99,235,0.04)] backdrop-blur-md flex flex-col overflow-hidden">
+            <div className={cn(
+              "relative w-full bg-gradient-to-br from-background-elevated via-background to-background-elevated rounded-xl sm:rounded-2xl lg:rounded-[24px] backdrop-blur-md overflow-hidden transition-all duration-500",
+              isHighlighted
+                ? "shadow-[0_0_0_4px_rgba(251,191,36,0.3),0_0_0_8px_rgba(37,99,235,0.2),0_2px_6px_rgba(37,99,235,0.15),0_8px_16px_rgba(251,191,36,0.35),0_16px_32px_-4px_rgba(37,99,235,0.15),0_24px_48px_rgba(251,191,36,0.30),0_32px_64px_-8px_rgba(37,99,235,0.12),0_48px_96px_rgba(251,191,36,0.20)] animate-pulse"
+                : "shadow-[0_1px_3px_rgba(37,99,235,0.12),0_4px_8px_rgba(251,191,36,0.25),0_8px_16px_-4px_rgba(37,99,235,0.10),0_12px_24px_rgba(251,191,36,0.20),0_20px_40px_-8px_rgba(37,99,235,0.08),0_24px_48px_rgba(251,191,36,0.12)]"
+            )}>
               {/* Subtle texture overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(37,99,235,0.03),transparent_70%)] pointer-events-none" />
 
-              {/* Chat header - minimal and ethereal */}
-              <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-gradient-to-b from-background-elevated/60 to-transparent backdrop-blur-xl flex items-center gap-3 border-b border-border/50">
-                <div className="flex-shrink-0 w-9 h-9 bg-gradient-to-br from-primary via-blue-600 to-blue-700 rounded-[14px] flex items-center justify-center shadow-[0_1px_2px_rgba(37,99,235,0.25),0_4px_8px_rgba(37,99,235,0.20),0_12px_24px_rgba(37,99,235,0.12)]">
-                  <svg className="w-5 h-5 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-body text-sm sm:text-base font-medium text-foreground">
-                    AI Grant Finder
-                  </h3>
-                  <p className="font-body text-xs sm:text-sm text-muted-foreground/60 mt-0.5">
-                    Powered by Fund Frolic
-                  </p>
-                </div>
+              {/* Form header */}
+              <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 bg-gradient-to-b from-background-elevated/60 to-transparent backdrop-blur-xl border-b border-border/50">
+                <h3 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground text-center">
+                  Find $50K-$500K in grants for your startup in seconds
+                </h3>
               </div>
 
-              {/* Chat messages with refined spacing */}
-              <div
-                ref={chatContainerRef}
-                className="relative z-0 flex-1 px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10 space-y-4 sm:space-y-6 overflow-y-auto"
-              >
-                {messages.map((message) => (
-                  <div
-                    key={message.id}
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="relative z-10 p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
+                {/* Project Description */}
+                <div className="space-y-2">
+                  <label htmlFor="projectDescription" className="block font-body text-sm font-medium text-foreground">
+                    Describe Your Project
+                  </label>
+                  <textarea
+                    id="projectDescription"
+                    value={formData.projectDescription}
+                    onChange={(e) => {
+                      setFormData(prev => ({ ...prev, projectDescription: e.target.value }));
+                      if (errors.projectDescription) {
+                        setErrors(prev => ({ ...prev, projectDescription: undefined }));
+                      }
+                    }}
+                    rows={4}
+                    placeholder="Tell us about your project. Include relevant details like veteran-owned, minority-owned, immigrant-owned, women-owned, or other special designations..."
                     className={cn(
-                      "flex items-start gap-5 animate-in fade-in duration-500",
-                      message.type === 'user' ? 'justify-end slide-in-from-right' : 'slide-in-from-left'
+                      "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-sm text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300 resize-none",
+                      errors.projectDescription ? "ring-2 ring-error focus:ring-error" : "focus:ring-primary/40"
                     )}
-                  >
-                    {message.type === 'ai' && (
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-[12px] flex items-center justify-center">
-                        <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                      </div>
-                    )}
+                  />
+                  {errors.projectDescription && (
+                    <p className="text-xs text-error ml-2">{errors.projectDescription}</p>
+                  )}
+                </div>
 
-                    <div className={cn(
-                      "flex-1 max-w-[82%]",
-                      message.type === 'user' && "text-right"
-                    )}>
-                      <div className={cn(
-                        "rounded-[20px] px-4 py-3 sm:px-6 sm:py-5",
-                        message.type === 'ai'
-                          ? "bg-gradient-to-br from-blue-50 via-blue-50/80 to-blue-100/60 rounded-tl-sm shadow-[0_1px_2px_rgba(37,99,235,0.10),0_4px_12px_-2px_rgba(37,99,235,0.08),0_12px_24px_-4px_rgba(37,99,235,0.05),0_20px_40px_-8px_rgba(37,99,235,0.03)]"
-                          : "inline-block bg-gradient-to-br from-background-elevated to-background/95 rounded-tr-sm shadow-[0_1px_2px_rgba(107,114,128,0.08),0_4px_12px_-2px_rgba(107,114,128,0.06),0_12px_24px_-4px_rgba(107,114,128,0.04),0_20px_40px_-8px_rgba(107,114,128,0.02)]"
-                      )}>
-                        <div className={cn(
-                          "font-body text-sm sm:text-base text-foreground leading-[1.7]",
-                          message.type === 'user' && "text-left"
-                        )}>
-                          {message.content}
-                        </div>
-                      </div>
-                      <span className={cn(
-                        "font-body text-xs text-muted-foreground/80 mt-2 sm:mt-3 inline-block",
-                        message.type === 'ai' ? "ml-2" : "mr-2"
-                      )}>
-                        {message.timestamp}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-
-                {isLoading && <TypingIndicator />}
-                <div ref={messagesEndRef} />
-              </div>
-
-              {/* Chat input with refined polish - changes based on step */}
-              <div className="relative z-10 px-4 py-4 sm:px-6 sm:py-6 lg:px-10 lg:py-8 bg-gradient-to-t from-background-elevated/95 via-background-elevated/70 to-transparent backdrop-blur-md border-t border-border/40">
-                {step === 1 && (
-                  <form onSubmit={handleStep1Submit} className="flex items-end gap-4">
-                    <textarea
-                      value={formData.idea}
-                      onChange={(e) => setFormData(prev => ({ ...prev, idea: e.target.value }))}
-                      placeholder="Describe your startup or project..."
-                      rows={1}
-                      className="flex-1 px-6 py-4 bg-background/90 backdrop-blur-sm rounded-[18px] font-body text-[15px] text-foreground placeholder:text-muted-foreground/70 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:shadow-[0_2px_4px_rgba(37,99,235,0.10),0_8px_16px_-2px_rgba(37,99,235,0.12),0_16px_32px_-4px_rgba(37,99,235,0.08),inset_0_1px_2px_rgb(255,255,255,0.8)] transition-all duration-300 resize-none"
-                      onInput={(e) => {
-                        const target = e.target as HTMLTextAreaElement;
-                        target.style.height = 'auto';
-                        target.style.height = target.scrollHeight + 'px';
+                {/* Revenue Status */}
+                <div className="space-y-2">
+                  <label className="block font-body text-sm font-medium text-foreground">
+                    Revenue Status
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData(prev => ({ ...prev, revenueStatus: 'positive' }));
+                        if (errors.revenueStatus) {
+                          setErrors(prev => ({ ...prev, revenueStatus: undefined }));
+                        }
                       }}
-                    />
-                    <button
-                      type="submit"
-                      disabled={!formData.idea.trim() || isLoading}
-                      className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-primary via-blue-600 to-blue-700 hover:from-blue-600 hover:via-primary hover:to-blue-600 rounded-[18px] flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 shadow-[0_1px_3px_rgba(37,99,235,0.25),0_6px_12px_rgba(37,99,235,0.20),0_12px_24px_-2px_rgba(37,99,235,0.15),0_20px_40px_-4px_rgba(37,99,235,0.10)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.30),0_8px_16px_rgba(37,99,235,0.25),0_16px_32px_-2px_rgba(37,99,235,0.20),0_24px_48px_-4px_rgba(37,99,235,0.12)] hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                      aria-label="Send message"
+                      className={cn(
+                        "px-4 py-3 rounded-[16px] font-body text-sm font-medium transition-all duration-200",
+                        formData.revenueStatus === 'positive'
+                          ? "bg-primary text-primary-foreground shadow-[0_2px_4px_rgba(37,99,235,0.20),0_8px_16px_rgba(37,99,235,0.15)]"
+                          : "bg-background/60 text-foreground hover:bg-background/90 shadow-[0_1px_2px_rgba(59,130,246,0.06)]"
+                      )}
                     >
-                      <svg className="w-6 h-6 text-primary-foreground drop-shadow-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
+                      Revenue Positive
                     </button>
-                  </form>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData(prev => ({ ...prev, revenueStatus: 'not-positive' }));
+                        if (errors.revenueStatus) {
+                          setErrors(prev => ({ ...prev, revenueStatus: undefined }));
+                        }
+                      }}
+                      className={cn(
+                        "px-4 py-3 rounded-[16px] font-body text-sm font-medium transition-all duration-200",
+                        formData.revenueStatus === 'not-positive'
+                          ? "bg-primary text-primary-foreground shadow-[0_2px_4px_rgba(37,99,235,0.20),0_8px_16px_rgba(37,99,235,0.15)]"
+                          : "bg-background/60 text-foreground hover:bg-background/90 shadow-[0_1px_2px_rgba(59,130,246,0.06)]"
+                      )}
+                    >
+                      Not Revenue Positive
+                    </button>
+                  </div>
+                  {errors.revenueStatus && (
+                    <p className="text-xs text-error ml-2">{errors.revenueStatus}</p>
+                  )}
+                </div>
+
+                {/* Organization Type */}
+                <div className="space-y-2">
+                  <label className="block font-body text-sm font-medium text-foreground">
+                    Organization Type
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData(prev => ({ ...prev, organizationType: 'for-profit' }));
+                        if (errors.organizationType) {
+                          setErrors(prev => ({ ...prev, organizationType: undefined }));
+                        }
+                      }}
+                      className={cn(
+                        "px-4 py-3 rounded-[16px] font-body text-sm font-medium transition-all duration-200",
+                        formData.organizationType === 'for-profit'
+                          ? "bg-primary text-primary-foreground shadow-[0_2px_4px_rgba(37,99,235,0.20),0_8px_16px_rgba(37,99,235,0.15)]"
+                          : "bg-background/60 text-foreground hover:bg-background/90 shadow-[0_1px_2px_rgba(59,130,246,0.06)]"
+                      )}
+                    >
+                      For-Profit
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData(prev => ({ ...prev, organizationType: 'non-profit' }));
+                        if (errors.organizationType) {
+                          setErrors(prev => ({ ...prev, organizationType: undefined }));
+                        }
+                      }}
+                      className={cn(
+                        "px-4 py-3 rounded-[16px] font-body text-sm font-medium transition-all duration-200",
+                        formData.organizationType === 'non-profit'
+                          ? "bg-primary text-primary-foreground shadow-[0_2px_4px_rgba(37,99,235,0.20),0_8px_16px_rgba(37,99,235,0.15)]"
+                          : "bg-background/60 text-foreground hover:bg-background/90 shadow-[0_1px_2px_rgba(59,130,246,0.06)]"
+                      )}
+                    >
+                      Non-Profit
+                    </button>
+                  </div>
+                  {errors.organizationType && (
+                    <p className="text-xs text-error ml-2">{errors.organizationType}</p>
+                  )}
+                </div>
+
+                {/* Submit Error */}
+                {errors.submit && (
+                  <div className="p-4 bg-error/10 border border-error/20 rounded-[16px]">
+                    <p className="text-sm text-error text-center">{errors.submit}</p>
+                  </div>
                 )}
 
-                {step === 2 && (
-                  <form onSubmit={handleStep2Submit} className="space-y-3">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <input
-                        type="text"
-                        value={formData.name}
-                        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        placeholder="Your name"
-                        className="px-6 py-4 bg-background/90 backdrop-blur-sm rounded-[18px] font-body text-[15px] text-foreground placeholder:text-muted-foreground/70 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all duration-300"
-                      />
-                      <div>
-                        <input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => {
-                            setFormData(prev => ({ ...prev, email: e.target.value }));
-                            if (errors.email) setErrors({});
-                          }}
-                          placeholder="Your email"
-                          className={cn(
-                            "w-full px-6 py-4 bg-background/90 backdrop-blur-sm rounded-[18px] font-body text-[15px] text-foreground placeholder:text-muted-foreground/70 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
-                            errors.email ? "ring-2 ring-error focus:ring-error" : "focus:ring-primary/40"
-                          )}
-                        />
-                        {errors.email && (
-                          <p className="text-xs text-error mt-1.5 ml-2">{errors.email}</p>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={!formData.name.trim() || !formData.email.trim() || isLoading}
-                      className="w-full px-6 py-4 bg-gradient-to-br from-primary via-blue-600 to-blue-700 hover:from-blue-600 hover:via-primary hover:to-blue-600 rounded-[18px] font-body font-semibold text-primary-foreground transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 shadow-[0_1px_3px_rgba(37,99,235,0.25),0_6px_12px_rgba(37,99,235,0.20),0_12px_24px_-2px_rgba(37,99,235,0.15)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.30),0_8px_16px_rgba(37,99,235,0.25),0_16px_32px_-2px_rgba(37,99,235,0.20)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    >
-                      Continue
-                    </button>
-                  </form>
-                )}
-
-                {step === 3 && (
-                  <form onSubmit={handleStep3Submit} className="space-y-3">
-                    {/* Certifications with header */}
-                    <div className="bg-background/90 backdrop-blur-sm rounded-[18px] p-5 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)]">
-                      <p className="font-body text-sm font-medium text-muted-foreground mb-3">
-                        Select all that apply:
-                      </p>
-                      <div className="max-h-[150px] overflow-y-auto space-y-1.5 pr-2 scrollbar-thin">
-                        {CERTIFICATIONS.map((cert) => (
-                          <label
-                            key={cert}
-                            className="flex items-center gap-2.5 px-3 py-2.5 bg-background/40 hover:bg-primary/5 rounded-[12px] cursor-pointer transition-all duration-150 group"
-                          >
-                            <input
-                              type="checkbox"
-                              checked={formData.certifications.includes(cert)}
-                              onChange={() => toggleCertification(cert)}
-                              className="w-4 h-4 rounded border-2 border-primary/30 text-primary focus:ring-2 focus:ring-primary/40 cursor-pointer transition-all"
-                            />
-                            <span className="font-body text-sm text-foreground group-hover:text-primary transition-colors flex-1">
-                              {cert}
-                            </span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Business name input */}
-                    <input
-                      type="text"
-                      value={formData.businessName}
-                      onChange={(e) => setFormData(prev => ({ ...prev, businessName: e.target.value }))}
-                      placeholder="Business name (optional)"
-                      className="w-full px-6 py-4 bg-background/90 backdrop-blur-sm rounded-[18px] font-body text-[15px] text-foreground placeholder:text-muted-foreground/70 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all duration-300"
-                    />
-
-                    {/* Submit button */}
-                    <button
-                      type="submit"
-                      disabled={isLoading}
-                      className="w-full px-6 py-4 bg-gradient-to-br from-primary via-blue-600 to-blue-700 hover:from-blue-600 hover:via-primary hover:to-blue-600 rounded-[18px] font-body font-semibold text-primary-foreground transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 shadow-[0_1px_3px_rgba(37,99,235,0.25),0_6px_12px_rgba(37,99,235,0.20),0_12px_24px_-2px_rgba(37,99,235,0.15)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.30),0_8px_16px_rgba(37,99,235,0.25),0_16px_32px_-2px_rgba(37,99,235,0.20)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    >
-                      Find My Grants
-                    </button>
-                  </form>
-                )}
-              </div>
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full px-6 py-4 bg-gradient-to-br from-primary via-blue-600 to-blue-700 hover:from-blue-600 hover:via-primary hover:to-blue-600 rounded-[18px] font-body font-semibold text-primary-foreground transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 shadow-[0_1px_3px_rgba(37,99,235,0.25),0_4px_8px_rgba(251,191,36,0.18),0_6px_12px_rgba(37,99,235,0.20),0_12px_24px_-2px_rgba(37,99,235,0.15)] hover:shadow-[0_2px_4px_rgba(37,99,235,0.30),0_6px_12px_rgba(251,191,36,0.20),0_8px_16px_rgba(37,99,235,0.25),0_16px_32px_-2px_rgba(37,99,235,0.20)] hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Find My Grants
+                </button>
+              </form>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/atoms/Button';
 import { useEffect, useState } from 'react';
+import { useFormHighlight } from '@/lib/contexts/FormHighlightContext';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -25,12 +26,27 @@ export const Header = ({
 }: HeaderProps) => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollY, setScrollY] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const { triggerHighlight } = useFormHighlight();
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
+    setIsScrolling(true);
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const offset = 120; // Account for fixed header height + padding
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Re-enable scroll listener after animation completes
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
     }
   };
 
@@ -39,9 +55,12 @@ export const Header = ({
       // Track scroll position
       setScrollY(window.scrollY);
 
+      // Skip active section detection during programmatic scrolling
+      if (isScrolling) return;
+
       // Track active section
       const sections = ['home', 'services', 'story'];
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const scrollPosition = window.scrollY + 150; // Account for header offset
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
@@ -64,7 +83,7 @@ export const Header = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isScrolling]);
 
   const isScrolled = scrollY > 20;
 
@@ -83,13 +102,8 @@ export const Header = ({
           ? "w-fit shadow-[0_1px_3px_rgba(37,99,235,0.12),0_8px_16px_-4px_rgba(37,99,235,0.10),0_20px_40px_-8px_rgba(37,99,235,0.08),0_32px_64px_-12px_rgba(37,99,235,0.04)] duration-500"
           : "max-w-7xl shadow-none duration-300"
       )}>
-        {/* Floating card background - fades in when scrolled */}
-        <div
-          className={cn(
-            "absolute inset-0 bg-gradient-to-br from-background-elevated via-background to-background-elevated backdrop-blur-md transition-opacity duration-500 ease-in-out",
-            isScrolled ? "opacity-100" : "opacity-0"
-          )}
-        />
+        {/* Floating card background - always visible */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background-elevated via-background to-background-elevated backdrop-blur-md" />
 
         {/* Subtle texture overlay - only when scrolled */}
         {isScrolled && (
@@ -167,7 +181,23 @@ export const Header = ({
           </nav>
 
           {/* CTA */}
-          <Button variant="primary" size="md">
+          <Button
+            variant="primary"
+            size="md"
+            onClick={() => {
+              const element = document.getElementById('home');
+              if (element) {
+                const offset = 120;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+                triggerHighlight();
+              }
+            }}
+          >
             Get Started
           </Button>
         </div>
