@@ -9,12 +9,21 @@
 
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { GrantResult, SearchRequest } from '@/types/grants';
 
 export interface ContactFormProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Search ID to associate contact with grant search
+   * Search ID to associate contact with grant search (optional for standalone contact)
    */
-  searchId: string;
+  searchId?: string;
+  /**
+   * Grant results to include in email (optional, only when user found grants)
+   */
+  grantResults?: GrantResult;
+  /**
+   * Search request data to include in email (optional, only when user found grants)
+   */
+  searchRequest?: SearchRequest;
   /**
    * Callback when form is successfully submitted
    */
@@ -42,6 +51,8 @@ interface FormErrors {
 
 export const ContactForm = ({
   searchId,
+  grantResults,
+  searchRequest,
   onSuccess,
   className,
   ...props
@@ -89,11 +100,13 @@ export const ContactForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          searchId,
+          ...(searchId && { searchId }),
           name: formData.name,
           email: formData.email,
           ...(formData.organizationName && { organizationName: formData.organizationName }),
           ...(formData.phone && { phone: formData.phone }),
+          ...(grantResults && { grantResults }),
+          ...(searchRequest && { searchRequest }),
         }),
       });
 

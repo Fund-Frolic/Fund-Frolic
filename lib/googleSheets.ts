@@ -86,8 +86,9 @@ export async function writeGrantSearch(
     // Append row to sheet
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: 'Sheet1!A:Y', // Adjust range as needed
+      range: 'Sheet1!A1', // Start explicitly at column A
       valueInputOption: 'RAW',
+      insertDataOption: 'INSERT_ROWS',
       requestBody: {
         values: [rowData],
       },
@@ -98,6 +99,55 @@ export async function writeGrantSearch(
     console.error('Error writing grant search to Google Sheets:', error);
     // Don't throw - we don't want to fail the API call if sheets sync fails
     // Just log the error for monitoring
+  }
+}
+
+/**
+ * Writes a standalone contact submission (not associated with a grant search)
+ */
+export async function writeStandaloneContact(
+  contactData: Omit<ContactSubmission, 'searchId'>
+): Promise<void> {
+  try {
+    const sheets = getGoogleSheetsClient();
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID!;
+
+    // Prepare row data with empty grant fields
+    const rowData = [
+      '', // No SearchID
+      new Date().toISOString(), // Timestamp
+      '', // ProjectDescription
+      '', // RevenueStatus
+      '', // OrganizationType
+
+      // All grant fields empty
+      '', '', '', '', '', // Grant 1
+      '', '', '', '', '', // Grant 2
+      '', '', '', '', '', // Grant 3
+
+      // Contact fields
+      contactData.name,
+      contactData.email,
+      contactData.organizationName || '',
+      contactData.phone || '',
+      'true', // ContactSubmitted
+    ];
+
+    // Append row to sheet
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range: 'Sheet1!A1',
+      valueInputOption: 'RAW',
+      insertDataOption: 'INSERT_ROWS',
+      requestBody: {
+        values: [rowData],
+      },
+    });
+
+    console.log('Standalone contact written to Google Sheets');
+  } catch (error) {
+    console.error('Error writing standalone contact to Google Sheets:', error);
+    throw error;
   }
 }
 
@@ -155,8 +205,7 @@ export async function updateContactInfo(
     console.log('Contact info updated in Google Sheets for searchId:', searchId);
   } catch (error) {
     console.error('Error updating contact info in Google Sheets:', error);
-    // Don't throw - we don't want to fail the API call if sheets sync fails
-    // Just log the error for monitoring
+    throw error; // Propagate error to API route
   }
 }
 

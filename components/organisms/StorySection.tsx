@@ -130,11 +130,12 @@ export const StorySection = ({
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
             Meet Your Funding Crew
           </h2>
-          <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            The folks who'll help you raise your barn
+          <p className="font-body text-base sm:text-lg md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+            <span className="lg:hidden">The team helping startups find funding without giving up equity.</span>
+            <span className="hidden lg:inline">Turns out the money's been here all along - these two just handed you the treasure map (no soul-selling or stock trading required). Meet Guenevere, Meet Logan</span>
           </p>
         </div>
 
@@ -175,7 +176,7 @@ export const StorySection = ({
               Logan Bell
             </h3>
             <p className="font-body text-sm sm:text-base text-primary font-medium mb-3 sm:mb-4">
-              Developer
+              Founding Developer
             </p>
             <p className="font-body text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md px-4 sm:px-0">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

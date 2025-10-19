@@ -3,25 +3,19 @@
  *
  * POST endpoint that accepts contact information from users requesting grant writing help.
  * Associates submission with searchId to track which grants they're interested in.
+ * Emails are sent automatically via Google Apps Script when the sheet is updated.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { ContactSubmission } from '@/types/grants';
-import { updateContactInfo } from '@/lib/googleSheets';
+import { updateContactInfo, writeStandaloneContact } from '@/lib/googleSheets';
 
 export async function POST(request: NextRequest) {
   try {
     const body: ContactSubmission = await request.json();
     const { searchId, name, email, organizationName, phone } = body;
 
-    // Validate input
-    if (!searchId || !searchId.trim()) {
-      return NextResponse.json(
-        { error: 'Search ID is required' },
-        { status: 400 }
-      );
-    }
-
+    // Validate input (searchId is optional for standalone contacts)
     if (!name || !name.trim()) {
       return NextResponse.json(
         { error: 'Name is required' },
@@ -49,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     // Log the submission
     console.log('Contact submission received:', {
-      searchId,
+      searchId: searchId || 'standalone',
       name,
       email,
       organizationName: organizationName || '',
@@ -57,15 +51,27 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString()
     });
 
-    // Update Google Sheets with contact info (don't await - fire and forget)
-    updateContactInfo(searchId, {
-      name,
-      email,
-      organizationName,
-      phone,
-    }).catch((error) => {
-      console.error('Failed to update contact info in Google Sheets:', error);
-    });
+    // Update Google Sheets with contact info
+    // Google Apps Script will automatically send emails when the sheet is updated
+    if (searchId) {
+      // Associated with a grant search
+      await updateContactInfo(searchId, {
+        name,
+        email,
+        organizationName,
+        phone,
+      });
+    } else {
+      // Standalone contact submission
+      await writeStandaloneContact({
+        name,
+        email,
+        organizationName,
+        phone,
+      });
+    }
+
+    console.log('Contact info saved to Google Sheets - emails will be sent automatically');
 
     // Return success
     return NextResponse.json({

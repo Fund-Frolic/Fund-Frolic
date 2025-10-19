@@ -25,9 +25,12 @@ export interface GrantResult {
 }
 
 export interface ContactSubmission {
-  searchId: string;
+  searchId?: string;
   name: string;
   email: string;
   organizationName?: string;
   phone?: string;
+  // Optional grant results data for sending emails
+  grantResults?: GrantResult;
+  searchRequest?: SearchRequest;
 }

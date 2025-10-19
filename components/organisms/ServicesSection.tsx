@@ -157,11 +157,12 @@ export const ServicesSection = ({
       <div className="relative max-w-7xl mx-auto w-full z-10">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
-            Love Your Matches? We'll Help You Win Them.
+          <h2 className="font-display text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4">
+            Our Services
           </h2>
-          <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            The free tool shows you WHAT to apply for. Our team helps you actually GET the money.
+          <p className="font-body text-base sm:text-lg md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+            <span className="lg:hidden">We find grants, write applications, and handle compliance - you focus on building.</span>
+            <span className="hidden lg:inline">Your funding co-pilot - we pinpoint the right grants, write winning applications, and navigate federal, state, and private funding so you stay focused on building.</span>
           </p>
         </div>
 
@@ -184,7 +185,8 @@ export const ServicesSection = ({
                 Custom Funding Blueprint
               </h3>
               <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                A tailored roadmap showing exactly which grants fit your stage, industry, and vision — no guesswork.
+                <span className="lg:hidden">Personalized grant matches for your stage and industry.</span>
+                <span className="hidden lg:inline">Your personalized roadmap showing exactly which grants match your stage, industry, and vision - clarity without the guesswork.</span>
               </p>
             </div>
           </div>
@@ -206,7 +208,8 @@ export const ServicesSection = ({
                 Full-Service Grant Writing
               </h3>
               <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                We handle the research, writing, compliance, and submission. You focus on building your company.
+                <span className="lg:hidden">We handle research, writing, and submission.</span>
+                <span className="hidden lg:inline">We handle the research, writing, compliance, and submission - so you can stay focused on building and scaling.</span>
               </p>
             </div>
           </div>
@@ -225,10 +228,11 @@ export const ServicesSection = ({
               </div>
 
               <h3 className="font-display text-base sm:text-lg lg:text-xl font-bold text-foreground mb-2 sm:mb-3">
-                End-to-End Support
+                Ongoing Grant Tracking
               </h3>
               <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                We continuously track new opportunities across federal, state, and private sources, then handle impact reporting and documentation to keep you eligible for future funding rounds.
+                <span className="lg:hidden">Continuous monitoring and impact reporting to keep you eligible.</span>
+                <span className="hidden lg:inline">We continuously monitor new opportunities across federal, state, and private sources - plus deliver impact reporting to keep you eligible for future rounds.</span>
               </p>
             </div>
           </div>

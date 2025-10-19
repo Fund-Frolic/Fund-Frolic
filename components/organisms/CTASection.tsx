@@ -10,6 +10,7 @@
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/atoms/Button';
 import { useFormHighlight } from '@/lib/contexts/FormHighlightContext';
+import { useBottomSheet } from '@/lib/contexts/BottomSheetContext';
 
 export interface CTASectionProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
@@ -20,6 +21,7 @@ export const CTASection = ({
   ...props
 }: CTASectionProps) => {
   const { triggerHighlight } = useFormHighlight();
+  const { openBottomSheet } = useBottomSheet();
 
   return (
     <section
@@ -38,13 +40,15 @@ export const CTASection = ({
 
           <div className="relative">
             {/* Heading */}
-            <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6">
-              Still Scrolling? Your Grants Are Waiting.
+            <h2 className="font-display text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6">
+              <span className="lg:hidden">Your Grants Are Waiting</span>
+              <span className="hidden lg:inline">Still Scrolling? Your Grants Are Waiting.</span>
             </h2>
 
             {/* Subheading */}
-            <p className="font-body text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8 lg:mb-10 max-w-2xl mx-auto">
-              Join 500+ founders who found their perfect grants in under a minute.
+            <p className="font-body text-base sm:text-lg md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 lg:mb-10 max-w-2xl mx-auto">
+              <span className="lg:hidden">Join 500+ founders who found grants in under a minute.</span>
+              <span className="hidden lg:inline">Join 500+ founders who found their perfect grants in under a minute.</span>
             </p>
 
             {/* Benefits List */}
@@ -56,7 +60,8 @@ export const CTASection = ({
                   </svg>
                 </div>
                 <p className="font-body text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Get 3 personalized grant matches tailored to your project
+                  <span className="lg:hidden">Get 3 personalized grant matches</span>
+                  <span className="hidden lg:inline">Get 3 personalized grant matches tailored to your project</span>
                 </p>
               </div>
 
@@ -67,7 +72,8 @@ export const CTASection = ({
                   </svg>
                 </div>
                 <p className="font-body text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  See why each grant is a perfect fit for your business
+                  <span className="lg:hidden">See why each grant fits your business</span>
+                  <span className="hidden lg:inline">See why each grant is a perfect fit for your business</span>
                 </p>
               </div>
 
@@ -78,7 +84,8 @@ export const CTASection = ({
                   </svg>
                 </div>
                 <p className="font-body text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Start your application with direct links to each opportunity
+                  <span className="lg:hidden">Get direct links to start applying</span>
+                  <span className="hidden lg:inline">Start your application with direct links to each opportunity</span>
                 </p>
               </div>
             </div>
@@ -89,16 +96,22 @@ export const CTASection = ({
               size="lg"
               className="w-full sm:w-auto sm:min-w-[280px]"
               onClick={() => {
-                const element = document.getElementById('home');
-                if (element) {
-                  const offset = 120;
-                  const elementPosition = element.getBoundingClientRect().top;
-                  const offsetPosition = elementPosition + window.pageYOffset - offset;
-                  window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                  });
-                  triggerHighlight();
+                // On mobile (below 640px), open bottom sheet instead
+                if (window.innerWidth < 640) {
+                  openBottomSheet();
+                } else {
+                  // On desktop, scroll and highlight form
+                  const element = document.getElementById('home');
+                  if (element) {
+                    const offset = 120;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                    triggerHighlight();
+                  }
                 }
               }}
             >

@@ -1,13 +1,19 @@
 /**
- * Find Grants API Route
+ * Find Grants API Route - AI-Powered Search
  *
- * POST endpoint that accepts project details and uses OpenAI to find matching grants
+ * POST endpoint that uses AI to find grants:
+ * 1. Tavily web search to find grant opportunities
+ * 2. OpenAI to analyze and extract the best matches
+ * 3. URL validation to filter out dead links and subscription sites
+ * 4. Deduplication to ensure unique results
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { openai } from '@/lib/openai';
 import { SearchRequest, GrantResult, Grant } from '@/types/grants';
 import { writeGrantSearch } from '@/lib/googleSheets';
+import { filterValidUrls } from '@/lib/utils/urlValidator';
+import { searchWeb } from '@/lib/apis/tavily';
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,109 +42,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get current date to provide context to AI
-    const today = new Date();
-    const todayFormatted = today.toLocaleDateString('en-US', {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric'
-    });
+    console.log('Starting AI-powered grant search for:', { organizationType, revenueStatus });
 
-    // Create structured prompt for OpenAI
-    const prompt = `You are a grant funding expert. Based on the following project details, find 3 specific, real grants that would be a great match.
+    // AI-ONLY SEARCH: Use Tavily + OpenAI for best results
+    const aiGrants = await searchGrantsWithAI(projectDescription, revenueStatus, organizationType);
 
-TODAY'S DATE: ${todayFormatted}
+    console.log(`AI Search: Found ${aiGrants.length} grants from AI web search`);
 
-Project Description: ${projectDescription}
-Revenue Status: ${revenueStatus === 'positive' ? 'Revenue Positive' : 'Not Revenue Positive'}
-Organization Type: ${organizationType === 'for-profit' ? 'For-Profit' : 'Non-Profit'}
+    // Filter out duplicates
+    const uniqueGrants = deduplicateGrants(aiGrants);
 
-CRITICAL DEADLINE REQUIREMENTS:
-- TODAY IS ${todayFormatted}
-- Only recommend grants with deadlines AFTER ${todayFormatted}
-- Do NOT recommend any grants with deadlines before ${todayFormatted}
-- If a grant had a deadline in the past (e.g., February 2025, March 2025, etc. when today is ${todayFormatted}), it is EXPIRED and must NOT be included
-- Only include grants that are CURRENTLY ACCEPTING APPLICATIONS or have FUTURE deadlines
+    console.log(`After deduplication: ${uniqueGrants.length} unique grants`);
 
-Please return ONLY a valid JSON array with exactly 3 grants. Each grant must have:
-- name: The official grant name
-- description: A brief description of the grant (2-3 sentences). MUST include the application deadline date if known, or clearly state if it has rolling/ongoing deadlines.
-- whyGoodFit: Specific reasons why this grant matches the project (2-3 sentences)
-- eligibility: An array of key eligibility requirements (3-5 items)
-- link: A valid URL to the grant application or information page
+    // Validate URLs (filters out dead links and subscription sites)
+    const validGrants = await filterValidUrls(uniqueGrants);
 
-Focus on federal, state, and reputable private grants. Prioritize grants that:
-- Have deadlines AFTER ${todayFormatted} (remember, today is ${todayFormatted})
-- Have rolling deadlines or year-round application windows
-- Match the organization type (${organizationType})
-- Align with the revenue status (${revenueStatus})
-- Are relevant to any special designations mentioned (veteran-owned, minority-owned, women-owned, etc.)
+    console.log(`After URL validation: ${validGrants.length} grants have valid, free URLs`);
 
-DEADLINE VERIFICATION CHECKLIST (verify each grant before including):
-✓ Is the deadline after ${todayFormatted}?
-✓ If the grant has a specific month/year deadline, is it in the FUTURE?
-✓ If unsure about deadline, does it explicitly state "rolling" or "ongoing"?
-✗ If any deadline is before ${todayFormatted}, DO NOT include this grant
+    // Select top 3 grants
+    let topGrants = validGrants.slice(0, 3);
 
-Return ONLY the JSON array, no additional text or formatting.`;
+    console.log(`Selected ${topGrants.length} top grants`);
 
-    // Call OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a grant funding expert who provides accurate, specific grant recommendations. Always return valid JSON arrays only.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: 0.7,
-      max_tokens: 2000,
-    });
-
-    // Extract and parse response
-    const responseText = completion.choices[0]?.message?.content?.trim();
-
-    if (!responseText) {
-      throw new Error('No response from OpenAI');
+    // If we don't have 3 grants, use unvalidated AI results as backup
+    if (topGrants.length < 3) {
+      console.log(`Only ${topGrants.length} validated grants, adding AI results as backup`);
+      const remainingNeeded = 3 - topGrants.length;
+      const backupGrants = aiGrants
+        .filter(g => !topGrants.some(t => t.name === g.name))
+        .slice(0, remainingNeeded);
+      topGrants.push(...backupGrants);
     }
 
-    // Parse JSON response
-    let grants: Grant[];
-    try {
-      grants = JSON.parse(responseText);
-    } catch (parseError) {
-      console.error('Failed to parse OpenAI response:', responseText);
-      throw new Error('Invalid JSON response from AI');
+    // If still no grants, throw error
+    if (topGrants.length === 0) {
+      throw new Error('No grants found matching criteria');
     }
 
-    // Validate response structure
-    if (!Array.isArray(grants) || grants.length !== 3) {
-      throw new Error('AI did not return exactly 3 grants');
-    }
-
-    // Validate each grant has required fields
-    for (const grant of grants) {
-      if (!grant.name || !grant.description || !grant.whyGoodFit ||
-          !Array.isArray(grant.eligibility) || !grant.link) {
-        throw new Error('Invalid grant structure in AI response');
-      }
-    }
+    console.log(`Final: Returning ${topGrants.length} grant(s)`);
 
     // Create result object
     const result: GrantResult = {
-      grants,
+      grants: topGrants.slice(0, 3), // Ensure we return up to 3 grants
       searchId: `search_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       timestamp: new Date().toISOString(),
     };
 
-    // Sync to Google Sheets (don't await - fire and forget)
-    writeGrantSearch(result, body).catch((error) => {
-      console.error('Failed to sync grant search to Google Sheets:', error);
-    });
+    // Sync to Google Sheets
+    try {
+      await writeGrantSearch(result, body);
+    } catch (sheetsError) {
+      console.error('Failed to sync grant search to Google Sheets:', sheetsError);
+    }
 
     return NextResponse.json(result);
 
@@ -171,3 +126,156 @@ Return ONLY the JSON array, no additional text or formatting.`;
     );
   }
 }
+
+/**
+ * Use Tavily to search the web, then OpenAI to analyze and structure results
+ */
+async function searchGrantsWithAI(
+  projectDescription: string,
+  revenueStatus: string,
+  organizationType: string
+): Promise<Grant[]> {
+  try {
+    const today = new Date();
+    const todayFormatted = today.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+
+    // STEP 1: Search the web with Tavily for real grant opportunities
+    const searchQuery = `${organizationType === 'for-profit' ? 'for-profit business' : 'nonprofit'} grants ${projectDescription.slice(0, 100)} ${new Date().getFullYear()}`;
+
+    console.log(`Tavily search query: ${searchQuery}`);
+    const webResults = await searchWeb({
+      query: searchQuery,
+      maxResults: 8,
+      searchDepth: 'advanced',
+    });
+
+    console.log(`Tavily returned ${webResults.length} web results`);
+
+    if (webResults.length === 0) {
+      console.log('No web results from Tavily, returning empty array');
+      return [];
+    }
+
+    // STEP 2: Use GPT-4o to analyze search results and extract grant info
+    const webContext = webResults.map((result, idx) =>
+      `[${idx + 1}] ${result.title}\nURL: ${result.url}\n${result.content}\n`
+    ).join('\n---\n\n');
+
+    const prompt = `You are a grant funding expert. I've searched the web and found these results about grant opportunities. Analyze them and extract the 3 BEST grant opportunities that match the project.
+
+TODAY'S DATE: ${todayFormatted}
+
+Project Description: ${projectDescription}
+Revenue Status: ${revenueStatus === 'positive' ? 'Revenue Positive' : 'Not Revenue Positive'}
+Organization Type: ${organizationType === 'for-profit' ? 'For-Profit' : 'Non-Profit'}
+
+WEB SEARCH RESULTS:
+${webContext}
+
+TASK:
+Analyze the web results above and select the 3 BEST grant opportunities that:
+1. Match the organization type (${organizationType})
+2. Are currently open or have rolling deadlines
+3. Align with the project description
+4. Have a valid, specific URL from the search results
+5. ARE COMPLETELY FREE TO ACCESS (no subscription or paywall required)
+
+CRITICAL - EXCLUDE THESE SUBSCRIPTION SITES:
+❌ GrantWatch.com
+❌ Instrumentl.com
+❌ Candid.org
+❌ FoundationCenter.org
+❌ GrantStation.com
+❌ GrantSmart.org
+❌ FoundationSearch.com
+❌ Chronicle.com
+
+ONLY include grants from:
+✅ Government websites (.gov)
+✅ Foundation websites that are freely accessible
+✅ Non-profit organization websites
+✅ University grant portals
+✅ Free grant directories
+
+Return ONLY a valid JSON array with exactly 3 grants:
+[
+  {
+    "name": "Grant Name (from search results)",
+    "description": "Description with deadline info",
+    "whyGoodFit": "Why this matches the project",
+    "eligibility": ["requirement 1", "requirement 2", "requirement 3"],
+    "link": "https://exact-url-from-search-results.com"
+  }
+]
+
+IMPORTANT: Only use URLs that appear in the search results above. Do not make up URLs. Never include subscription/paywall sites.
+
+Return ONLY the JSON array, no additional text.`;
+
+    const completion = await openai.chat.completions.create({
+      model: 'chatgpt-4o-latest',
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a grant funding expert. Analyze web search results and extract real grant opportunities. Only return grants with URLs that were provided in the search results.'
+        },
+        {
+          role: 'user',
+          content: prompt
+        }
+      ],
+      temperature: 0.5, // Lower temperature for more accurate extraction
+      max_tokens: 2000,
+    });
+
+    const responseText = completion.choices[0]?.message?.content?.trim();
+
+    if (!responseText) {
+      return [];
+    }
+
+    // Parse JSON response
+    try {
+      const grants = JSON.parse(responseText);
+      if (Array.isArray(grants)) {
+        return grants.filter(g =>
+          g.name && g.description && g.whyGoodFit &&
+          Array.isArray(g.eligibility) && g.link
+        );
+      }
+    } catch (parseError) {
+      console.error('Failed to parse AI response:', parseError);
+    }
+
+    return [];
+
+  } catch (error) {
+    console.error('Error in AI grant search:', error);
+    return [];
+  }
+}
+
+/**
+ * Remove duplicate grants based on name similarity
+ */
+function deduplicateGrants(grants: Grant[]): Grant[] {
+  const seen = new Set<string>();
+  const unique: Grant[] = [];
+
+  for (const grant of grants) {
+    // Normalize name for comparison (lowercase, remove special chars)
+    const normalizedName = grant.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    if (!seen.has(normalizedName)) {
+      seen.add(normalizedName);
+      unique.push(grant);
+    }
+  }
+
+  return unique;
+}
+

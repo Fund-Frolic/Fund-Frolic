@@ -8,7 +8,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { GrantResult } from '@/types/grants';
+import { GrantResult, SearchRequest } from '@/types/grants';
 
 export type ViewState = 'form' | 'loading' | 'results' | 'contact' | 'success';
 
@@ -17,6 +17,8 @@ interface ViewStateContextType {
   setViewState: (state: ViewState) => void;
   grantResults: GrantResult | null;
   setGrantResults: (results: GrantResult | null) => void;
+  searchRequest: SearchRequest | null;
+  setSearchRequest: (request: SearchRequest | null) => void;
 }
 
 const ViewStateContext = createContext<ViewStateContextType | undefined>(undefined);
@@ -24,6 +26,7 @@ const ViewStateContext = createContext<ViewStateContextType | undefined>(undefin
 export function ViewStateProvider({ children }: { children: ReactNode }) {
   const [viewState, setViewState] = useState<ViewState>('form');
   const [grantResults, setGrantResults] = useState<GrantResult | null>(null);
+  const [searchRequest, setSearchRequest] = useState<SearchRequest | null>(null);
 
   return (
     <ViewStateContext.Provider
@@ -32,6 +35,8 @@ export function ViewStateProvider({ children }: { children: ReactNode }) {
         setViewState,
         grantResults,
         setGrantResults,
+        searchRequest,
+        setSearchRequest,
       }}
     >
       {children}
