@@ -167,7 +167,7 @@ export const GrantResults = ({
           {results.grants.map((grant, index) => (
             <GrantCard
               key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
+              ref={(el) => { cardRefs.current[index] = el; }}
               grant={grant}
               rank={index + 1}
               isExpanded={expandedCardIndex === index}
