@@ -260,9 +260,18 @@ Return ONLY the JSON array, no additional text.`;
       return [];
     }
 
-    // Parse JSON response
+    // Parse JSON response - strip markdown code fences if present
     try {
-      const grants = JSON.parse(responseText);
+      // Remove markdown code fences (```json or ``` at start/end)
+      let cleanedText = responseText;
+      if (cleanedText.startsWith('```')) {
+        // Remove opening fence (```json or ```)
+        cleanedText = cleanedText.replace(/^```(?:json)?\s*/i, '');
+        // Remove closing fence
+        cleanedText = cleanedText.replace(/\s*```\s*$/, '');
+      }
+
+      const grants = JSON.parse(cleanedText);
       if (Array.isArray(grants)) {
         return grants.filter(g =>
           g.name && g.description && g.whyGoodFit &&
