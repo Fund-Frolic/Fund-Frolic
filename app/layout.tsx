@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     url: 'https://www.fundfrolic.com',
     siteName: 'Fund Frolic',
     title: 'Fund Frolic - AI-Powered Grant Finder for Startups',
-    description: 'Fuel your startup's growth without giving up equity. Our AI Grant Finder instantly matches your project with grants built for for-profits and nonprofits alike.',
+    description: 'Fuel your startup\'s growth without giving up equity. Our AI Grant Finder instantly matches your project with grants built for for-profits and nonprofits alike.',
     images: [
       {
         url: '/og-image.png',
