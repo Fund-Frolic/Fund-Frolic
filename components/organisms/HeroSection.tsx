@@ -167,6 +167,8 @@ export const HeroSection = ({
           // Keep loading state for at least 2 seconds for smooth UX
           setTimeout(() => {
             setViewState('results');
+            // Scroll to top when results load
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }, 2000);
 
         } catch (error) {
