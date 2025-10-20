@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Fund Frolic - AI-Powered Grant Finder for Startups',
-    description: 'Fuel your startup's growth without giving up equity. Find grants in seconds with AI.',
+    description: 'Fuel your startup\'s growth without giving up equity. Find grants in seconds with AI.',
     images: ['/og-image.png'],
   },
 };
