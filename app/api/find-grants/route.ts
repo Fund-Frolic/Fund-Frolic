@@ -17,6 +17,15 @@ import { searchWeb } from '@/lib/apis/tavily';
 
 export async function POST(request: NextRequest) {
   try {
+    // Debug logging for production
+    console.log('=== FIND GRANTS API DEBUG ===');
+    console.log('Environment check:', {
+      hasOpenAIKey: !!process.env.OPENAI_API_KEY,
+      keyPrefix: process.env.OPENAI_API_KEY?.substring(0, 7),
+      hasTavilyKey: !!process.env.TAVILY_API_KEY,
+      nodeEnv: process.env.NODE_ENV
+    });
+
     const body: SearchRequest = await request.json();
     const { projectDescription, revenueStatus, organizationType } = body;
 
@@ -98,11 +107,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(result);
 
   } catch (error: unknown) {
-    console.error('Error in find-grants API:', error);
+    console.error('=== ERROR IN FIND-GRANTS API ===');
+    console.error('Error details:', error);
+    console.error('Error type:', typeof error);
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
 
     // Handle specific OpenAI errors
     if (error && typeof error === 'object' && 'status' in error) {
       const apiError = error as { status?: number; message?: string };
+
+      console.error('API Error status:', apiError.status);
+      console.error('API Error message:', apiError.message);
 
       if (apiError.status === 429) {
         return NextResponse.json(
@@ -113,15 +131,19 @@ export async function POST(request: NextRequest) {
 
       if (apiError.status === 401) {
         return NextResponse.json(
-          { error: 'API authentication error. Please contact support.' },
+          { error: 'API authentication error. OpenAI key may be invalid.' },
           { status: 500 }
         );
       }
     }
 
-    // Generic error response
+    // Generic error response with more details in development
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: 'Failed to find grants. Please try again.' },
+      {
+        error: 'Failed to find grants. Please try again.',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     );
   }
