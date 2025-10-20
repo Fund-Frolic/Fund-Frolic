@@ -239,7 +239,7 @@ IMPORTANT: Only use URLs that appear in the search results above. Do not make up
 Return ONLY the JSON array, no additional text.`;
 
     const completion = await openai.chat.completions.create({
-      model: 'chatgpt-4o-latest',
+      model: 'gpt-4o',
       messages: [
         {
           role: 'system',
