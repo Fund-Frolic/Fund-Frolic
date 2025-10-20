@@ -294,10 +294,9 @@ export const HeroSection = ({
               <span className="hidden lg:inline">Fuel Your Startup's Growth - Without Giving Up Equity</span>
             </h1>
 
-            {/* Body copy - Condensed on mobile, full on desktop */}
+            {/* Body copy - Full text on all screen sizes */}
             <p className="font-body text-base sm:text-lg md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-center lg:text-left">
-              <span className="lg:hidden">AI-powered grant matching for startups. We handle the paperwork, you focus on building.</span>
-              <span className="hidden lg:inline">You're here to scale without giving up equity. That's why Fund Frolic exists. Our AI Grant Finder instantly matches your project with grants built for for-profits and nonprofits alike. We handle the government forms and red tape, so you stay focused on what you're building.</span>
+              You're here to scale without giving up equity. That's why Fund Frolic exists. Our AI Grant Finder instantly matches your project with grants built for for-profits and nonprofits alike. We handle the government forms and red tape, so you stay focused on what you're building.
             </p>
 
             {/* Mobile CTA Button - Only show below sm breakpoint */}
