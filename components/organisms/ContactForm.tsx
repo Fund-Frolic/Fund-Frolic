@@ -171,7 +171,7 @@ export const ContactForm = ({
               }}
               placeholder="John Doe"
               className={cn(
-                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-sm text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
+                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-base text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
                 errors.name ? "ring-2 ring-error focus:ring-error" : "focus:ring-primary/40"
               )}
             />
@@ -197,7 +197,7 @@ export const ContactForm = ({
               }}
               placeholder="john@example.com"
               className={cn(
-                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-sm text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
+                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-base text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
                 errors.email ? "ring-2 ring-error focus:ring-error" : "focus:ring-primary/40"
               )}
             />
@@ -223,7 +223,7 @@ export const ContactForm = ({
               }}
               placeholder="Acme Inc."
               className={cn(
-                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-sm text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
+                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-base text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
                 errors.organizationName ? "ring-2 ring-error focus:ring-error" : "focus:ring-primary/40"
               )}
             />
@@ -249,7 +249,7 @@ export const ContactForm = ({
               }}
               placeholder="(555) 123-4567"
               className={cn(
-                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-sm text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
+                "w-full px-4 py-3 bg-background/90 backdrop-blur-sm rounded-[16px] font-body text-base text-foreground placeholder:text-muted-foreground/60 shadow-[0_1px_2px_rgba(59,130,246,0.06),0_4px_8px_-2px_rgba(59,130,246,0.04),0_8px_16px_-4px_rgba(59,130,246,0.02),inset_0_1px_2px_rgb(255,255,255,0.8)] focus:outline-none focus:ring-2 transition-all duration-300",
                 errors.phone ? "ring-2 ring-error focus:ring-error" : "focus:ring-primary/40"
               )}
             />
